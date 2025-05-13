@@ -21,13 +21,16 @@ import static utilities.Driver.getAppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
 
+import javax.sound.midi.InvalidMidiDataException;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class ReusableMethods {
    private static DesiredCapabilities desiredCapabilities=new DesiredCapabilities();
@@ -111,6 +114,127 @@ public class ReusableMethods {
             Thread.sleep(saniye * 1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
+        }
+    }
+
+    public static void scrollWithUiScrollableContentDescClick(String elementText) {
+
+        Driver.getAppiumDriver().findElement(
+                MobileBy.AndroidUIAutomator(
+                        "new UiScrollable(new UiSelector()).scrollIntoView(new UiSelector().description(\"" + elementText + "\"));"
+                )
+        ).click();
+    }
+    public static void clickButtonByDescription(String description) {
+        AndroidDriver driver = (AndroidDriver) getAppiumDriver();
+        WebElement button = driver.findElement(MobileBy.AndroidUIAutomator(
+                "new UiSelector().description(\"" + description + "\")"));
+        button.click();
+    }
+    public static void scrollWithUiScrollableContentDesc(String elementText) {
+
+        Driver.getAppiumDriver().findElement(
+                MobileBy.AndroidUIAutomator(
+                        "new UiScrollable(new UiSelector()).scrollIntoView(new UiSelector().description(\"" + elementText + "\"));"
+                )
+        );
+    }
+
+    public static void scrollWithPartialContentDesc(String partialDesc) {
+        Driver.getAppiumDriver().findElement(
+                MobileBy.AndroidUIAutomator(
+                        "new UiScrollable(new UiSelector()).scrollIntoView(new UiSelector().descriptionContains(\"" + partialDesc + "\"));"
+                )
+        ).click();
+    }
+
+
+    public static List<String> getAllCategories() throws InvalidMidiDataException {
+        List<String> allCategories = new ArrayList<>();
+        boolean isEndOfList = false;
+
+        while (!isEndOfList) {
+
+            List<WebElement> visibleCategories = Driver.getAppiumDriver().findElements(By.xpath("(//android.view.View)[11]//android.view.View"));
+
+            for (WebElement category : visibleCategories) {
+                String categoryName = category.getAttribute("content-desc");
+
+                if (categoryName != null && !categoryName.equals("null") && !categoryName.trim().isEmpty()) {
+                    if (!allCategories.contains(categoryName)) {
+                        allCategories.add(categoryName);
+                    }
+                }
+            }
+
+            OptionsMet.swipe(1188, 1162, 0, 1162);
+            ReusableMethods.wait(1);
+
+            List<WebElement> currentVisibleCategories = Driver.getAppiumDriver().findElements(By.xpath("(//android.view.View)[11]//android.view.View"));
+            String currentCategoryName = currentVisibleCategories.get(currentVisibleCategories.size() - 1).getAttribute("content-desc");
+
+            String lastCategory = allCategories.get(allCategories.size() - 1);
+
+            if (currentCategoryName.equals(lastCategory)) {
+                isEndOfList = true;
+            }
+        }
+        return allCategories;
+    }
+
+    public static void selectCategory(String categoryNameVariable) {
+        List<String> allCategories = new ArrayList<>();
+        boolean categoryFound = false;
+        boolean reachedEnd = false;
+
+        while (!categoryFound) {
+
+            List<WebElement> visibleCategories = Driver.getAppiumDriver().findElements(By.xpath("(//android.view.View)[11]//android.view.View"));
+
+            for (WebElement category : visibleCategories) {
+                String categoryName = category.getAttribute("content-desc");
+
+                if (categoryName != null && !categoryName.equals("null") && !categoryName.trim().isEmpty()) {
+                    if (!allCategories.contains(categoryName)) {
+                        allCategories.add(categoryName);
+
+                        if (categoryName.equals(categoryNameVariable)) {
+                            categoryFound = true;
+                            category.click();
+                            break;
+                        }
+                    }
+                }
+            }
+
+            if (categoryFound) break;
+
+            if (reachedEnd) {
+                try {
+                    OptionsMet.swipe(0, 1162, 1188, 1162);
+                } catch (InvalidMidiDataException e) {
+                    throw new RuntimeException(e);
+                }
+                ReusableMethods.wait(1);
+
+            } else {
+
+                String lastVisibleCategory = visibleCategories.get(visibleCategories.size() - 1).getAttribute("content-desc");
+
+                try {
+                    OptionsMet.swipe(1188, 1162, 0, 1162);
+                } catch (InvalidMidiDataException e) {
+                    throw new RuntimeException(e);
+                }
+                ReusableMethods.wait(1);
+
+                visibleCategories = Driver.getAppiumDriver().findElements(By.xpath("(//android.view.View)[11]//android.view.View"));
+
+                String newLastVisibleCategory = visibleCategories.get(visibleCategories.size() - 1).getAttribute("content-desc");
+                if (lastVisibleCategory.equals(newLastVisibleCategory)) {
+                    reachedEnd = true;
+                }
+            }
         }
     }
 

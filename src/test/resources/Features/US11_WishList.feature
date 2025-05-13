@@ -1,4 +1,4 @@
-@2
+
 Feature: US_11 WishList
 
   Background: User opens the app
@@ -18,25 +18,25 @@ Feature: US_11 WishList
     * As a user muss be "phoneNumber" phone and "password" password Login
     * User clicks the button with description "Profile"
     * User clicks the button with description "Change Password"
-     # * Old Password new Password and Confirm Password
-@Add
+    # * Old Password new Password and Confirm Password
+  @Add
   Scenario: Produkte add to card
     * User clicks the button with description "Profile"
     * User clicks the button with description "Sign In"
     * As a user muss be "phoneNumber" phone and "password" password Login
     * User clicks tap coordinates 313, 2408
-    * User clicks tap coordinates 433, 2397
+    * User clicks tap coordinates 433, 2657
     * User swipe to screen coordinates 643, 2499, 660, 1537
     * User clicks tap coordinates 455, 1867
     * User clicks tap coordinates 1207, 2710
 
-  @3
+
   Scenario: Test display of categories on screen
     *  User clicks the button with description "Categories"
     *  User confirms that categories appear on the screen
     *  Driver turns off
 
-  @FP
+
   Scenario: Forgot Password Test
     *  User clicks the button with description "Profile"
     * User clicks the button with description "Sign In"

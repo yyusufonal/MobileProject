@@ -64,7 +64,7 @@ public class OptionsMet {
     // Ekrandaki bir butona tıklama metodu
     public static void clickButtonByDescription(String description) {
         AndroidDriver driver = (AndroidDriver) getAppiumDriver();
-        WebElement button = driver.findElement(MobileBy.AndroidUIAutomator(
+        WebElement button = driver.  findElement(MobileBy.AndroidUIAutomator(
                 "new UiSelector().description(\"" + description + "\")"));
         button.click();
     }
