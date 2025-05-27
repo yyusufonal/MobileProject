@@ -111,7 +111,7 @@ public class QueryCardPage {
 
     public void wishListToast() {
         System.out.println(addWishListToast.getText());
-        assertTrue(addWishListToast.isEnabled());
+        assertTrue(addWishListToast.isDisplayed());
     }
 
     public void ForgetPasswordPhoneBox(String phoneNumber) {
@@ -139,9 +139,6 @@ public class QueryCardPage {
 
     @FindBy(xpath = "(//android.view.View)[10]")
     public WebElement productName;
-
-
-
 
     @FindBy(xpath = "(//*[@class='android.widget.ImageView'])[3]")
     public WebElement removepopup;

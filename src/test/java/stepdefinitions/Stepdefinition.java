@@ -56,7 +56,7 @@ public class Stepdefinition extends OptionsMet {
         card.phoneTextBoxClickAndSendKeys(text);
         // Telefon numarası alanından sonra Tab ile şifre alanına geç
         actions.sendKeys(Keys.TAB).perform();
-        actions.sendKeys("Wise.123").perform();
+        actions.sendKeys("Wise123*").perform();
         ReusableMethods.wait(1);
         // Şifre alanından sonra Tab ile "remember me" checkbox'ına geç
         actions.sendKeys(Keys.TAB).perform();
@@ -106,8 +106,8 @@ public class Stepdefinition extends OptionsMet {
     @Given("User confirms that categories appear on the screen")
     public void user_confirms_that_categories_appear_on_the_screen() {
         // for (int i = 0; i <categoriesMen.size(); i++) {
-        //    assertTrue(categoriesMen.get(i).);
-        //  }
+        //  assertTrue(categoriesMen.get(i).);
+       //  }
     }
 
     @Given("User clicks phone number textbox and {string} phone number")

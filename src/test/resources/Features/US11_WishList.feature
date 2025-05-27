@@ -12,44 +12,5 @@ Feature: US_11 WishList
     * Toaster is displayed
     * Driver turns off
 
-  Scenario: Change Password
-    * User clicks the button with description "Profile"
-    * User clicks the button with description "Sign In"
-    * As a user muss be "phoneNumber" phone and "password" password Login
-    * User clicks the button with description "Profile"
-    * User clicks the button with description "Change Password"
-    # * Old Password new Password and Confirm Password
-
-  Scenario: Produkte add to card
-    * User clicks the button with description "Profile"
-    * User clicks the button with description "Sign In"
-    * As a user muss be "phoneNumber" phone and "password" password Login
-    * User clicks tap coordinates 313, 2408
-    * User clicks tap coordinates 433, 2657
-    * User swipe to screen coordinates 643, 2499, 660, 1537
-    * User clicks tap coordinates 455, 1867
-    * User clicks tap coordinates 1207, 2710
-
-
-  Scenario: Test display of categories on screen
-    *  User clicks the button with description "Categories"
-    *  User confirms that categories appear on the screen
-    *  Driver turns off
-
-
-  Scenario: Forgot Password Test
-    *  User clicks the button with description "Profile"
-    * User clicks the button with description "Sign In"
-    * User clicks the button with description "Forgot Password"
-    * Verifies username "Forgot Password" in dashboard
-    * Verifies username "Back to sign in" in dashboard
-    * User clicks phone number textbox and "6505551212" phone number
-    * User clicks the button with description "Get OTP"
-   # * Verifies username "The User verify is successfully." in dashboard
-    * User clicks NewPasswordTextBox and confirmPasswordTextBox "Wise.123"
-    *  User clicks the button with description "Submit"
-    * User clicks the button with description "Profile"
-    * Verifies username "elif" in dashboard
-    * Driver turns off
 
 

@@ -103,7 +103,7 @@ public class OptionsMet {
 
     public static void xPathElementClick(String itemName, String reviews,String price) {
         String xpathExpression = String.format("//android.view.View[contains(@content-desc, '%s') and contains(@content-desc, '%s') and contains(@content-desc, '%s')]/android.widget.ImageView", itemName, reviews, price);
-
+       ReusableMethods.wait(3);
         // Öğeyi bulma
         WebElement element = getAppiumDriver().findElement(MobileBy.xpath(xpathExpression));
 
