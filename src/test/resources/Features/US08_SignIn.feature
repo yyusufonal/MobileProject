@@ -1,7 +1,7 @@
 Feature: Profile
   Background: User opens the app
     * User makes driver adjustments
-  @1
+  @08
   Scenario: It should be possible to log in to the system when valid information is entered in the login form and the signIn button is clicked.
     * User confirms to be on the homepage
     * User clicks the button with description "Profile"
