@@ -53,6 +53,21 @@ public class QueryCardPage {
     @AndroidFindBy(uiAutomator = "new UiSelector().className(\"android.widget.EditText\").instance(1)")
     private WebElement confirmPasswordBox;
 
+    @AndroidFindBy(xpath = "//android.view.View[@content-desc=\"Add\n" +
+            "    Added to Wishlist\"]")
+    public WebElement addedWish;
+
+
+
+    @AndroidFindBy(xpath = "//android.view.View[@content-desc=\"Remove\n" + "    Removed from Wishlist\"]")
+    public WebElement removedWish;
+
+    @AndroidFindBy(uiAutomator = "new UiSelector().className(\"android.widget.ImageView\").instance(2)")
+    public WebElement whiteHeart;
+
+    @AndroidFindBy(xpath = "(//*[@index='2'])[1]")
+    public WebElement wishquant;
+
 
     public void LogoGorunurTest() {
 
@@ -124,6 +139,12 @@ public class QueryCardPage {
 
     @FindBy(xpath = "(//android.view.View)[10]")
     public WebElement productName;
+
+
+
+
+    @FindBy(xpath = "(//*[@class='android.widget.ImageView'])[3]")
+    public WebElement removepopup;
 
 }
 

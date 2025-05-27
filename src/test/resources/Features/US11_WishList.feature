@@ -3,7 +3,7 @@ Feature: US_11 WishList
 
   Background: User opens the app
     * User makes driver adjustments
-
+  @Add
   Scenario:  Test to select favorite products and add to wishlist
     * User clicks the button with description "Profile"
     * User clicks the button with description "Sign In"
@@ -19,7 +19,7 @@ Feature: US_11 WishList
     * User clicks the button with description "Profile"
     * User clicks the button with description "Change Password"
     # * Old Password new Password and Confirm Password
-  @Add
+
   Scenario: Produkte add to card
     * User clicks the button with description "Profile"
     * User clicks the button with description "Sign In"
