@@ -28,8 +28,8 @@ public class             Driver {
                 case "Android":
                     options = new UiAutomator2Options();
                     options.setPlatformName("Android").setAutomationName("UiAutomator2");
-                    options.setApp("C:\\Users\\elifk\\IdeaProjects\\MobileQueryCard-main\\src\\test\\java\\Apps\\querycart2006.apk");
-                    //options.setApp("C:\\Users\\elifk\\IdeaProjects\\MobileQueryCard-main\\src\\test\\java\\Apps\\Apk Bilgisi_2.3.4_apkcombo.com.apk");
+                    options.setApp("C:\\Users\\yusuf\\IdeaProjects\\MobileProject\\src\\test\\java\\Apps\\querycart2006.apk");
+                    //options.setApp("C:\\Users\\yusuf\\IdeaProjects\\MobileProject\\src\\test\\java\\Apps\\Apk Bilgisi_2.3.4_apkcombo.com.apk");
                     options.setAppPackage("com.wise.querycart");
                     options.setAppActivity("com.wise.querycart.MainActivity");
                     options.setUdid("emulator-5554");
