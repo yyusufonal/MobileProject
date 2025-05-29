@@ -4,6 +4,7 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
 
+import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
@@ -28,8 +29,14 @@ public class             Driver {
                 case "Android":
                     options = new UiAutomator2Options();
                     options.setPlatformName("Android").setAutomationName("UiAutomator2");
-                    options.setApp("C:\\Users\\yusuf\\IdeaProjects\\MobileProject\\src\\test\\java\\Apps\\querycart2006.apk");
-                    //options.setApp("C:\\Users\\yusuf\\IdeaProjects\\MobileProject\\src\\test\\java\\Apps\\Apk Bilgisi_2.3.4_apkcombo.com.apk");
+                    String apkPath = System.getProperty("user.dir") + File.separator +
+                            "src" + File.separator +
+                            "test" + File.separator +
+                            "java" + File.separator +
+                            "Apps" + File.separator +
+                            "querycart2006.apk";
+                    options.setApp(apkPath);
+
                     options.setAppPackage("com.wise.querycart");
                     options.setAppActivity("com.wise.querycart.MainActivity");
                     options.setUdid("emulator-5554");
