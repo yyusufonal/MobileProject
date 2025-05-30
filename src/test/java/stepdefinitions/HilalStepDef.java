@@ -9,7 +9,7 @@ import utilities.Driver;
 import utilities.ReusableMethods;
 
 public class HilalStepDef {
-    HilalPage page=new HilalPage();
+    HilalPage page =new HilalPage();
 
     @Given("User opens the application")
     public void openApp() {
