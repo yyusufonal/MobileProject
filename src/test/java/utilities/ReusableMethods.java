@@ -1,5 +1,6 @@
 package utilities;
 
+import Page.YusufPage;
 import io.appium.java_client.*;
 import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.remote.MobileCapabilityType;
@@ -26,9 +27,11 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.security.Key;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -101,13 +104,16 @@ public class ReusableMethods {
         return target;
     }
 
-    public static void ekranKaydirmaMethodu(int xPress,int yPress,int wait,int xMove,int yMove){
-        TouchAction action=new TouchAction<>((PerformsTouchActions) getAppiumDriver());
-        action.press(PointOption.point(xPress,yPress))
-                .waitAction(WaitOptions.waitOptions(Duration.ofMillis(wait)))
-                .moveTo(PointOption.point(xMove,yMove))
-                .release()
-                .perform();
+    public static void ekranKaydirmaMethodu(int xPress, int yPress, int wait, int xMove, int yMove) {
+        PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+        Sequence swipe = new Sequence(finger, 1);
+
+        swipe.addAction(finger.createPointerMove(Duration.ofMillis(0), PointerInput.Origin.viewport(), xPress, yPress));
+        swipe.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
+        swipe.addAction(finger.createPointerMove(Duration.ofMillis(wait), PointerInput.Origin.viewport(), xMove, yMove));
+        swipe.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+
+        getAppiumDriver().perform(Collections.singletonList(swipe));
     }
     public static void wait(int saniye) {
         try {
@@ -236,6 +242,28 @@ public class ReusableMethods {
                 }
             }
         }
+    }
+
+    public static void userLogin(String email, String password) {
+        YusufPage page = new YusufPage();
+
+        ReusableMethods.wait(2);
+        page.getProfileButonu().click();
+
+        ReusableMethods.wait(1);
+        page.getSignInButonu().click();
+
+        ReusableMethods.wait(1);
+        page.getUseEmailInsteadButonu().click();
+
+        ReusableMethods.wait(1);
+        OptionsMet.clickAndSendKeys(page.emailTextBoxu,email);
+
+        OptionsMet.clickAndSendKeys(page.passwordTextBoxu,password);
+
+        ReusableMethods.wait(1);
+        page.getSignInSayfasiSignInButonu().click();
+        ReusableMethods.wait(2);
     }
 
 

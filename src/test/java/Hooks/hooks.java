@@ -14,7 +14,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class hooks {
-/*
+
         @Before
         public void setUp() {
             Driver.getAppiumDriver();  // Her senaryo öncesi Appium session başlatılır
@@ -25,7 +25,7 @@ public class hooks {
             Driver.quitAppiumDriver(); // Her senaryo sonrası session sonlandırılır
         }
 
- */
+
     }
 
 
