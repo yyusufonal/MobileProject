@@ -9,10 +9,12 @@ import org.openqa.selenium.support.PageFactory;
 
 import static utilities.Driver.getAppiumDriver;
 @Getter
-public class YusufPage {
-    public YusufPage(){
-        PageFactory.initElements(new AppiumFieldDecorator(getAppiumDriver()),this);
+public class YusufPage extends BasePage {
+
+    public YusufPage(AppiumDriver driver) {
+        super(driver);
     }
+
 
     @AndroidFindBy(xpath = "(//android.widget.ImageView[@content-desc=\"Profile\"])")
     public WebElement profileButonu;
@@ -40,8 +42,60 @@ public class YusufPage {
             "$54.00\")")
     public WebElement canvasBackpackButonu;
 
+    @AndroidFindBy(uiAutomator = "new UiSelector().description(\"Brown\")")
+    public WebElement backpackColorButonu;
+
+    @AndroidFindBy(uiAutomator = "new UiSelector().description(\"Add To Cart\")")
+    public WebElement addToCartButonu;
+
+    @AndroidFindBy(uiAutomator = "new UiSelector().className(\"android.widget.ImageView\").instance(6)")
+    public WebElement CartButonu;
+
+    @AndroidFindBy(uiAutomator = "new UiSelector().description(\"Proceed to Checkout\")")
+    public WebElement proceedToCheckoutButton;
+
+    @AndroidFindBy(uiAutomator = "new UiSelector().description(\"Add\")")
+    public WebElement addAddressButton;
+
+    @AndroidFindBy(uiAutomator = "new UiSelector().className(\"android.widget.EditText\").instance(0)")
+    public WebElement fullNameTextBox;
+
+    @AndroidFindBy(uiAutomator = "new UiSelector().className(\"android.widget.EditText\").instance(1)")
+    public WebElement addressEmailTextBox;
+
+    @AndroidFindBy(uiAutomator = "new UiSelector().className(\"android.widget.EditText\").instance(2)")
+    public WebElement addressPhoneTextBox;
+
+    @AndroidFindBy(uiAutomator = "new UiSelector().description(\"Country\")")
+    public WebElement addressCountryBox;
+
+    @AndroidFindBy(uiAutomator = "new UiSelector().className(\"android.widget.EditText\")")
+    public WebElement addressCountryTextBox;
+
+    @AndroidFindBy(uiAutomator = "new UiSelector().description(\"State\")")
+    public WebElement addressStateBox;
+
+    @AndroidFindBy(uiAutomator = "new UiSelector().className(\"android.widget.EditText\")")
+    public WebElement addressStateTextBox;
+
+    @AndroidFindBy(uiAutomator = "new UiSelector().description(\"City\")")
+    public WebElement addressCityBox;
+
+    @AndroidFindBy(uiAutomator = "new UiSelector().className(\"android.widget.EditText\")")
+    public WebElement addressCityTextBox;
+
+    @AndroidFindBy(uiAutomator = "new UiSelector().className(\"android.widget.EditText\").instance(3)")
+    public WebElement addressZipCodeBox;
+
+    @AndroidFindBy(uiAutomator= "new UiSelector().className(\"android.widget.EditText\").instance(4)")
+    public WebElement streetAddressBox;
+
+    @AndroidFindBy(uiAutomator= "new UiSelector().className(\"android.widget.EditText\").instance(3)")
+    public WebElement streetAddressTextBox;
 
 
+    @AndroidFindBy(uiAutomator = "new UiSelector().description(\"Add Address\")")
+    public WebElement finalAddAddressButton;
 
 
 

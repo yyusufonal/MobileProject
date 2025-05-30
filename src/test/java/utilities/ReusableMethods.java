@@ -17,10 +17,13 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 
 import static java.time.Duration.ofMillis;
 import static java.util.Collections.singletonList;
+import static utilities.Driver.driver;
 import static utilities.Driver.getAppiumDriver;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import javax.sound.midi.InvalidMidiDataException;
 import java.io.File;
@@ -245,7 +248,7 @@ public class ReusableMethods {
     }
 
     public static void userLogin(String email, String password) {
-        YusufPage page = new YusufPage();
+        YusufPage page = new YusufPage(Driver.getAppiumDriver());
 
         ReusableMethods.wait(2);
         page.getProfileButonu().click();
@@ -264,6 +267,59 @@ public class ReusableMethods {
         ReusableMethods.wait(1);
         page.getSignInSayfasiSignInButonu().click();
         ReusableMethods.wait(2);
+    }
+
+    public static void addAddress(String fullName ,String email,String phone,String country, String state, String city, String zip, String street){
+        YusufPage page = new YusufPage(Driver.getAppiumDriver());
+
+        page.addAddressButton.click();
+        OptionsMet.clickAndSendKeys(page.fullNameTextBox,fullName);
+        OptionsMet.clickAndSendKeys(page.addressEmailTextBox,email);
+        OptionsMet.clickAndSendKeys(page.addressPhoneTextBox,phone);
+        ReusableMethods.wait(1);
+        page.addressCountryBox.click();
+        ReusableMethods.wait(1);
+        OptionsMet.clickAndSendKeys(page.addressCountryTextBox,country);
+        ReusableMethods.wait(1);
+        selectFromDropdownByContentDesc(country, driver);
+        ReusableMethods.wait(1);
+        page.addressStateBox.click();
+        ReusableMethods.wait(2);
+        OptionsMet.clickAndSendKeys(page.addressStateTextBox,state);
+        ReusableMethods.wait(1);
+        selectFromDropdownByContentDesc(state, driver);
+        ReusableMethods.wait(1);
+        page.addressCityBox.click();
+        ReusableMethods.wait(1);
+        OptionsMet.clickAndSendKeys(page.addressCityTextBox,city);
+        ReusableMethods.wait(1);
+        selectFromDropdownByContentDesc(city, driver);
+        ReusableMethods.wait(1);
+        OptionsMet.clickAndSendKeys(page.addressZipCodeBox,zip);
+        ReusableMethods.wait(1);
+        OptionsMet.hideKeyboard();
+        ReusableMethods.wait(2);
+        page.streetAddressBox.click();
+        ReusableMethods.wait(1);
+        page.streetAddressTextBox.sendKeys(street);
+        OptionsMet.hideKeyboard();
+        page.finalAddAddressButton.click();
+        ReusableMethods.wait(2);
+
+
+    }
+
+    public static void selectFromDropdownByContentDesc(String optionText, AppiumDriver driver) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        // XPath içeriği dinamik olarak oluşturuluyor
+        String xpath = "//android.view.View[@content-desc='" + optionText + "']";
+
+        WebElement option = (WebElement) wait.until(
+                ExpectedConditions.elementToBeClickable(By.xpath(xpath))
+        );
+
+        option.click();
     }
 
 
