@@ -14,4 +14,15 @@ public class HilalPage {
     @AndroidFindBy(accessibility = "Category")
     public WebElement CategoryButton;
 
+    @AndroidFindBy(accessibility = "Men")
+    public WebElement MenCategoryItem;
+
+    @AndroidFindBy(accessibility = "Women")
+    public WebElement WomenCategoryItem;
+
+    @AndroidFindBy(accessibility = "Juniors")
+    public WebElement JuniorsCategoryItem;
+
+    @AndroidFindBy(className = "android.widget.ImageView")
+    public WebElement CategoryFilterButton;
 }
