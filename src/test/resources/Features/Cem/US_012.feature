@@ -26,3 +26,7 @@ Feature: Product Detail Page Navigation and Content Display
   Scenario: [TC_005 -> US_012] Product Detail Section Content Display Test
     When the user clicks on the product named Flower Print Foil T-shirt
     When the Review button is clicked, the Review title and reviews of the product should be displayed
+
+  Scenario: [TC_006 -> US_012] Product Detail Section Content Display Test
+    When the user clicks on the product named Flower Print Foil T-shirt
+    When the Shipping&Return button is clicked, the Shipping&Return heading and the shipping and return conditions of the product should be displayed

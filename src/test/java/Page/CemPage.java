@@ -38,7 +38,11 @@ public class CemPage {
     @AndroidFindBy(accessibility = "Product Reviews")
     public WebElement ProductReviews;
 
-    @AndroidFindBy(accessibility = "Shipping & Return")
+    @AndroidFindBy(xpath = "(//android.view.View[@content-desc=\"Shipping & Return\"])[1]")
     public WebElement shippingAndReturnTab;
+
+    @AndroidFindBy(xpath = "(//android.view.View[@content-desc=\"Shipping & Return\"])[2]")
+    public WebElement ShippingAndReturnTitle;
+
 
 }

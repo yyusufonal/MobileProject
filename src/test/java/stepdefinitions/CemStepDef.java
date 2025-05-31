@@ -75,4 +75,12 @@ public class CemStepDef extends OptionsMet {
         cemPage.Review.click();
         Assert.assertTrue(cemPage.ProductReviews.isDisplayed());
     }
+
+    @When("the Shipping&Return button is clicked, the Shipping&Return heading and the shipping and return conditions of the product should be displayed")
+    public void theShippingReturnButtonIsClickedTheShippingReturnHeadingAndTheShippingAndReturnConditionsOfTheProductShouldBeDisplayed() {
+        ReusableMethods.ekranKaydirmaMethodu(687,2412,300,698,975);
+        ReusableMethods.wait(2);
+        cemPage.shippingAndReturnTab.click();
+        Assert.assertTrue(cemPage.ShippingAndReturnTitle.isDisplayed());
+    }
 }
