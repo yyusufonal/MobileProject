@@ -29,6 +29,9 @@ public class CemPage {
     @AndroidFindBy(accessibility = "Videos")
     public WebElement Videos;
 
+    @AndroidFindBy(accessibility = "Product Videos")
+    public WebElement VideosTitle;
+
     @AndroidFindBy(accessibility = "Review")
     public WebElement Review;
 

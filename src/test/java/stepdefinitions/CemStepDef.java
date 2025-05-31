@@ -58,4 +58,13 @@ public class CemStepDef extends OptionsMet {
         Assert.assertTrue(cemPage.productDetailTitle.isDisplayed());
         System.out.println("Product Details İçeriği Aktif");
     }
+
+    @When("clicking the Videos button, the Product Videos title and product videos should be displayed")
+    public void clickingTheVideosButtonTheProductVideosTitleAndProductVideosShouldBeDisplayed() {
+        ReusableMethods.ekranKaydirmaMethodu(687,2412,300,698,975);
+        ReusableMethods.wait(2);
+        cemPage.Videos.click();
+        Assert.assertTrue(cemPage.VideosTitle.isDisplayed());
+        System.out.println("Video Başlığı görünür durumda");
+    }
 }
