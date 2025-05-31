@@ -35,6 +35,10 @@ public class CemPage {
     @AndroidFindBy(accessibility = "Review")
     public WebElement Review;
 
+    @AndroidFindBy(accessibility = "Product Reviews")
+    public WebElement ProductReviews;
+
     @AndroidFindBy(accessibility = "Shipping & Return")
     public WebElement shippingAndReturnTab;
+
 }

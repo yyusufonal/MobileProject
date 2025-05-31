@@ -22,3 +22,7 @@ Feature: Product Detail Page Navigation and Content Display
     Scenario: [TC_004 -> US_012] Product Detail Section Content Display Test
       When the user clicks on the product named Flower Print Foil T-shirt
       When clicking the Videos button, the Product Videos title and product videos should be displayed
+
+  Scenario: [TC_005 -> US_012] Product Detail Section Content Display Test
+    When the user clicks on the product named Flower Print Foil T-shirt
+    When the Review button is clicked, the Review title and reviews of the product should be displayed
