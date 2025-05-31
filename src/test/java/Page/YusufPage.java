@@ -4,8 +4,10 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import lombok.Getter;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import utilities.ReusableMethods;
 
 import static utilities.Driver.getAppiumDriver;
 @Getter
@@ -93,9 +95,47 @@ public class YusufPage extends BasePage {
     @AndroidFindBy(uiAutomator= "new UiSelector().className(\"android.widget.EditText\").instance(3)")
     public WebElement streetAddressTextBox;
 
-
     @AndroidFindBy(uiAutomator = "new UiSelector().description(\"Add Address\")")
     public WebElement finalAddAddressButton;
+
+    @AndroidFindBy(uiAutomator = "new UiSelector().description(\"Save & Pay\")")
+    public WebElement saveAndPayButton;
+
+    @AndroidFindBy(uiAutomator = "new UiSelector().description(\"Stripe\")")
+    public WebElement stripeOptionButton;
+
+    @AndroidFindBy(uiAutomator = "new UiSelector().description(\"Confirm Order\")")
+    public WebElement confirmOrderButton;
+
+    @AndroidFindBy(uiAutomator = "new UiSelector().className(\"android.widget.EditText\").instance(0)")
+    public WebElement cardInformationsTextBox;
+
+    @AndroidFindBy(uiAutomator = "new UiSelector().className(\"android.widget.EditText\").instance(1)")
+    public WebElement monthYearTextBox;
+
+    @AndroidFindBy(uiAutomator = "new UiSelector().className(\"android.widget.EditText\").instance(2)")
+    public WebElement CVCTextBox;
+
+    @AndroidFindBy(uiAutomator = "new UiSelector().className(\"android.widget.EditText\").instance(3)")
+    public WebElement cardZipTextBox;
+
+    @AndroidFindBy(uiAutomator = "new UiSelector().resourceId(\"confirmBtn\")")
+    public WebElement confirmButton;
+
+    @AndroidFindBy(xpath = "//android.view.View[@content-desc='Thank you for your order!\nYour order is confirmed.']")
+    public WebElement orderConfirmedMessage;
+
+
+    public boolean isOrderConfirmedMessageVisible() {
+        try {
+            ReusableMethods.wait(1);
+            return orderConfirmedMessage.isDisplayed();
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+    }
+
+
 
 
 

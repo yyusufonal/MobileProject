@@ -6,9 +6,11 @@ import io.appium.java_client.AppiumDriver;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import utilities.ConfigReader;
 import utilities.Driver;
+import utilities.OptionsMet;
 import utilities.ReusableMethods;
 
 public class YusufStepDef {
@@ -60,5 +62,73 @@ public class YusufStepDef {
                 "Istanbul Province","Esenyurt","34500","Guzelyurt Street");
 
     }
+
+    @Then("select address and click {string}")
+    public void select_address_and_click(String selectedButton) {
+
+        OptionsMet.touchDown(138,880);
+        ReusableMethods.wait(2);
+        ReusableMethods.ekranKaydirmaMethodu(755,2318,200,761,1629);
+        ReusableMethods.wait(1);
+        WebElement saveAndPay =page.getElementByName(selectedButton);
+        saveAndPay.click();
+        ReusableMethods.wait(2);
+
+
+    }
+
+    @Then("verify that {string} option is visible")
+    public void verify_that_option_is_visible(String text) {
+
+        OptionsMet.VerifyElementText(text);
+
+    }
+
+    @Given("user select {string} option and click {string}")
+    public void user_select_option_and_click(String stripe, String confirmOrder) {
+
+        OptionsMet.clickButtonByDescription(stripe);
+        ReusableMethods.wait(1);
+        OptionsMet.clickButtonByDescription(confirmOrder);
+        ReusableMethods.wait(5);
+
+    }
+    @Then("fill card information with card number {string},month and year {string},CVC {string},zip {string} and click {string}")
+    public void fill_card_information_with_card_number_month_and_year_cvc_zip_and_click(String cardNumber, String monthYear, String CVC, String zip, String confirm) {
+
+
+    WebElement textBox = page.getElementByName("cardInformationsTextBox");
+        textBox.click();
+        ReusableMethods.wait(1);
+
+
+        textBox.sendKeys(cardNumber);
+        ReusableMethods.wait(1);
+        page.monthYearTextBox.sendKeys(monthYear);
+        ReusableMethods.wait(1);
+        page.CVCTextBox.sendKeys(CVC);
+        ReusableMethods.wait(1);
+        page.cardZipTextBox.sendKeys(zip);
+        ReusableMethods.wait(1);
+        OptionsMet.hideKeyboard();
+        ReusableMethods.wait(1);
+
+        WebElement button = page.getElementByName(confirm);
+        ReusableMethods.wait(1);
+        button.click();
+        ReusableMethods.wait(8);
+
+
+    }
+    @Then("verify that order confirmed message is visible")
+    public void verify_that_order_confirmed_message_is_visible() {
+
+        Assert.assertTrue("Order confirmation message is not visible",
+                page.isOrderConfirmedMessageVisible());
+
+    }
+
+
+
 
 }
