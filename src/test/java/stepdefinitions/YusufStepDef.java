@@ -106,7 +106,7 @@ public class YusufStepDef {
         ReusableMethods.wait(1);
         page.monthYearTextBox.sendKeys(monthYear);
         ReusableMethods.wait(1);
-        page.CVCTextBox.sendKeys(CVC);
+        page.cvcTextBox.sendKeys(CVC);
         ReusableMethods.wait(1);
         page.cardZipTextBox.sendKeys(zip);
         ReusableMethods.wait(1);
@@ -125,6 +125,30 @@ public class YusufStepDef {
 
         Assert.assertTrue("Order confirmation message is not visible",
                 page.isOrderConfirmedMessageVisible());
+
+    }
+
+    @Then("fill card information with card number {string}")
+    public void fill_card_information_with_card_number(String cardNumber) {
+        WebElement textBox = page.getElementByName("cardInformationsTextBox");
+        textBox.click();
+        ReusableMethods.wait(1);
+        textBox.sendKeys(cardNumber);
+        ReusableMethods.wait(1);
+
+
+    }
+    @Then("verify that card number, expiration date, CVC and zip are visible")
+    public void verify_that_card_number_expiration_date_cvv_and_zip_are_visible() {
+
+        OptionsMet.clickAndVerify(page.cardInformationsTextBox);
+        ReusableMethods.wait(1);
+        OptionsMet.clickAndVerify(page.monthYearTextBox);
+        ReusableMethods.wait(2);
+        OptionsMet.clickAndVerify(page.cvcTextBox);
+        ReusableMethods.wait(2);
+        OptionsMet.clickAndVerify(page.addressZipCodeBox);
+        ReusableMethods.wait(1);
 
     }
 

@@ -2,14 +2,11 @@ package Page;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
-import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import lombok.Getter;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.PageFactory;
 import utilities.ReusableMethods;
 
-import static utilities.Driver.getAppiumDriver;
 @Getter
 public class YusufPage extends BasePage {
 
@@ -114,7 +111,7 @@ public class YusufPage extends BasePage {
     public WebElement monthYearTextBox;
 
     @AndroidFindBy(uiAutomator = "new UiSelector().className(\"android.widget.EditText\").instance(2)")
-    public WebElement CVCTextBox;
+    public WebElement cvcTextBox;
 
     @AndroidFindBy(uiAutomator = "new UiSelector().className(\"android.widget.EditText\").instance(3)")
     public WebElement cardZipTextBox;
