@@ -14,8 +14,21 @@ Feature: US_024 As a registered user, I want to have a payment page where I can 
 
     And verify that "Stripe" option is visible
 
+  Scenario: TC002 Verify that the "Confirm Order" button is visible and active on the Payment Information page
+
+    And verify that "Confirm Order" option is visible
+
   @TC002
-  Scenario:TC002 Verify that the user can complete the payment by entering valid card details using the Stripe method
+  Scenario:TC003 Verify that when the user lands on the Stripe payment page, the card detail fields (card number, expiration date, CVC) are visible.
+
+    Given user select "Stripe" option and click "Confirm Order"
+    Then fill card information with card number "4242424242424242"
+    And verify that card number, expiration date, CVC and zip are visible
+
+
+
+
+  Scenario:TC004 Verify that after entering valid card details and successfully completing the order, an order completion message is displayed.
 
     Given user select "Stripe" option and click "Confirm Order"
     Then fill card information with card number "4242424242424242",month and year "10/25",CVC "215",zip "34500" and click "confirmButton"
