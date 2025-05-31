@@ -43,5 +43,19 @@ public class CemStepDef extends OptionsMet {
         Assert.assertTrue(cemPage.Details.isDisplayed());
         Assert.assertTrue(cemPage.Videos.isDisplayed());
         Assert.assertTrue(cemPage.shippingAndReturnTab.isDisplayed());
+
+        Assert.assertTrue(cemPage.Review.isEnabled());
+        Assert.assertTrue(cemPage.Details.isEnabled());
+        Assert.assertTrue(cemPage.Videos.isEnabled());
+        Assert.assertTrue(cemPage.shippingAndReturnTab.isEnabled());
+    }
+
+    @When("you click on the Details button, the Product Details title and product information should be displayed.")
+    public void youClickOnTheDetailsButtonTheProductDetailsTitleAndProductInformationShouldBeDisplayed() {
+        ReusableMethods.ekranKaydirmaMethodu(687,2412,300,698,975);
+        ReusableMethods.wait(2);
+        cemPage.Details.click();
+        Assert.assertTrue(cemPage.productDetailTitle.isDisplayed());
+        System.out.println("Product Details İçeriği Aktif");
     }
 }

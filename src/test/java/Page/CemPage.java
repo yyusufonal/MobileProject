@@ -20,9 +20,6 @@ public class CemPage {
     @AndroidFindBy(xpath = "//android.view.View[contains(@content-desc, 'Flower Print Foil T-shirt')]")
     public WebElement detailTitle;
 
-    @AndroidFindBy(accessibility = "Floral Print Midi Dress\\n0 (0  Reviews)\\n$100.00")
-    public WebElement product;
-
     @AndroidFindBy(accessibility = "Product Details")
     public WebElement productDetailTitle;
 
