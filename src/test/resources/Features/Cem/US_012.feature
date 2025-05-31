@@ -9,3 +9,8 @@ Feature: Product Detail Page Navigation and Content Display
   Scenario: [TC_001 -> US_012] Product Detail Page Navigation Test
     When the user clicks on the product named Flower Print Foil T-shirt
     Then the user should be navigated to the product detail page
+
+  Scenario: [TC_002 -> US_012] Product Detail Page Section Headings Visibility Test
+    When the user clicks on the product named Flower Print Foil T-shirt
+    Then the user should be navigated to the product detail page
+    Then the user should see "Details", "Videos", "Review", and "Shipping&Return" sections

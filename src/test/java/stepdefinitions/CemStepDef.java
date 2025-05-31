@@ -36,4 +36,12 @@ public class CemStepDef extends OptionsMet {
     }
 
 
+    @Then("the user should see {string}, {string}, {string}, and {string} sections")
+    public void theUserShouldSeeAndSections(String Details, String Videos, String Review, String ShippingReturn) {
+        ReusableMethods.ekranKaydirmaMethodu(687,2412,300,698,975);
+        Assert.assertTrue(cemPage.Review.isDisplayed());
+        Assert.assertTrue(cemPage.Details.isDisplayed());
+        Assert.assertTrue(cemPage.Videos.isDisplayed());
+        Assert.assertTrue(cemPage.shippingAndReturnTab.isDisplayed());
+    }
 }
