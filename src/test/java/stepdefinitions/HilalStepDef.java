@@ -74,6 +74,11 @@ public class HilalStepDef {
         ReusableMethods.wait(seconds);
     }
 
+    @And("Scroll the page to {string}")
+    public void scrollToElement(String elementName) {
+        ReusableMethods.scrollWithUiScrollable(elementName);
+    }
+
     private WebElement getElementByName(String elementName) {
         try {
             Field field = HilalPage.class.getField(elementName);
