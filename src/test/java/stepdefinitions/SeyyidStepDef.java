@@ -1,8 +1,65 @@
 package stepdefinitions;
 
-public class SeyyidStepDef {
+import Page.BasePage;
+import Page.SeyyidPage;
+import io.cucumber.java.en.Then;
+import org.junit.Assert;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
+import utilities.Driver;
+import utilities.OptionsMet;
+import utilities.ReusableMethods;
 
-	public static void main(String[] args) {
-		System.out.println("2 tane bounty, 1 tene biket forwla");
+public class SeyyidStepDef  {
+
+	SeyyidPage page = new SeyyidPage(Driver.getAppiumDriver());
+
+	@Then("test the visibility of the {string} link")
+	public void test_the_visibility_of_the_link(String string) {
+
+		OptionsMet.VerifyElementText(string);
+
 	}
+
+	@Then("click the {string} link")
+	public void click_the_link(String string) {
+		OptionsMet.clickButtonByDescription(string);
+	}
+	@Then("test the visibility of the {string} text")
+	public void test_the_visibility_of_the_text(String string) {
+		ReusableMethods.wait(3);
+		OptionsMet.VerifyElementText(string);
+	}
+
+	@Then("test the visibility of the {string} on the screen")
+	public void test_the_visibility_of_the_on_the_screen(String button) {
+		WebElement searchButton = page.getElementByName(button);
+		Assert.assertTrue("button is unseen", searchButton.isDisplayed());
+	}
+
+	@Then("type Women Snow Boots to the search button and click")
+	public void type_women_snow_boots_to_the_search_button_and_click() {
+		page.searchButton.click();
+		ReusableMethods.wait(2);
+		OptionsMet.clickAndSendKeys(page.searchAramaKismi, "Women Snow Boots");
+		ReusableMethods.wait(2);
+		OptionsMet.touchDown(993, 2187);
+		ReusableMethods.wait(2);
+
+	}
+
+
+	@Then("type iki tane bounty to the search button and click")
+	public void type_iki_tane_bounty_to_the_search_button_and_click() {
+		page.searchButton.click();
+		ReusableMethods.wait(2);
+		OptionsMet.clickAndSendKeys(page.searchAramaKismi, "İki tene bounty");
+		ReusableMethods.wait(2);
+		OptionsMet.touchDown(993, 2187);
+		ReusableMethods.wait(2);// Write code here that turns the phrase above into concrete actions
+	}
+
+
+
+
 }
