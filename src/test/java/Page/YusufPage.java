@@ -119,7 +119,7 @@ public class YusufPage extends BasePage {
     @AndroidFindBy(uiAutomator = "new UiSelector().resourceId(\"confirmBtn\")")
     public WebElement confirmButton;
 
-    @AndroidFindBy(xpath = "//android.view.View[@content-desc='Thank you for your order!\nYour order is confirmed.']")
+    @AndroidFindBy(xpath = "(//android.view.View[@content-desc='Thank you for your order!\nYour order is confirmed.'])")
     public WebElement orderConfirmedMessage;
 
 

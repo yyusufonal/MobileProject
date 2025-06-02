@@ -79,7 +79,7 @@ public class YusufStepDef {
 
     @Then("verify that {string} option is visible")
     public void verify_that_option_is_visible(String text) {
-
+        ReusableMethods.wait(2);
         OptionsMet.VerifyElementText(text);
 
     }
@@ -149,6 +149,31 @@ public class YusufStepDef {
         ReusableMethods.wait(2);
         OptionsMet.clickAndVerify(page.addressZipCodeBox);
         ReusableMethods.wait(1);
+
+    }
+
+    @When("user click {string} button")
+    public void user_click_button(String text) {
+        ReusableMethods.wait(1);
+        ReusableMethods.clickButtonByDescription(text);
+
+    }
+    @Then("user click last order's order details button")
+    public void user_click_last_order_s_order_details_button() {
+        ReusableMethods.wait(3);
+        OptionsMet.touchDown(1246,701);
+    }
+
+
+    @Then("click {string} button and verify that the {string} button is visible on the page")
+    public void click_button_and_verify_that_the_button_is_visible_on_the_page(String text1, String text2) {
+        ReusableMethods.wait(2);
+        ReusableMethods.ekranKaydirmaMethodu(653, 2659, 300, 641, 779);
+        ReusableMethods.wait(1);
+        OptionsMet.clickButtonByDescription(text1);
+        ReusableMethods.wait(2);
+        OptionsMet.VerifyElementText(text2);
+
 
     }
 
