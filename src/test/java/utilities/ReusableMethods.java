@@ -322,6 +322,46 @@ public class ReusableMethods {
         option.click();
     }
 
+    public static void Address(String fullName ,String email,String phone,String country, String state, String city, String zip, String street){
+        YusufPage page = new YusufPage(Driver.getAppiumDriver());
+
+        OptionsMet.clickAndSendKeys(page.fullNameTextBox,fullName);
+        OptionsMet.clickAndSendKeys(page.addressEmailTextBox,email);
+        OptionsMet.clickAndSendKeys(page.addressPhoneTextBox,phone);
+        ReusableMethods.wait(1);
+        page.addressCountryBox.click();
+        ReusableMethods.wait(1);
+        OptionsMet.clickAndSendKeys(page.addressCountryTextBox,country);
+        ReusableMethods.wait(1);
+        selectFromDropdownByContentDesc(country, driver);
+        ReusableMethods.wait(1);
+        page.addressStateBox.click();
+        ReusableMethods.wait(2);
+        OptionsMet.clickAndSendKeys(page.addressStateTextBox,state);
+        ReusableMethods.wait(1);
+        selectFromDropdownByContentDesc(state, driver);
+        ReusableMethods.wait(1);
+        page.addressCityBox.click();
+        ReusableMethods.wait(1);
+        OptionsMet.clickAndSendKeys(page.addressCityTextBox,city);
+        ReusableMethods.wait(1);
+        selectFromDropdownByContentDesc(city, driver);
+        ReusableMethods.wait(1);
+        OptionsMet.clickAndSendKeys(page.addressZipCodeBox,zip);
+        ReusableMethods.wait(1);
+        OptionsMet.hideKeyboard();
+        ReusableMethods.wait(2);
+       // page.streetAddressBox.click();
+        ReusableMethods.wait(1);
+        OptionsMet.clickAndSendKeys(page.streetAddressBox,street);
+        //page.streetAddressTextBox.sendKeys(street);
+        OptionsMet.hideKeyboard();
+        page.finalAddAddressButton.click();
+        ReusableMethods.wait(2);
+
+
+    }
+
 
 
 }
