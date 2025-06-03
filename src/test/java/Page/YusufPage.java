@@ -7,6 +7,8 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import utilities.ReusableMethods;
 
+import java.nio.file.WatchEvent;
+
 @Getter
 public class YusufPage extends BasePage {
 
@@ -122,15 +124,33 @@ public class YusufPage extends BasePage {
     @AndroidFindBy(xpath = "(//android.view.View[@content-desc='Thank you for your order!\nYour order is confirmed.'])")
     public WebElement orderConfirmedMessage;
 
-
-    public boolean isOrderConfirmedMessageVisible() {
+    public boolean isVisible(WebElement locate) {
         try {
             ReusableMethods.wait(1);
-            return orderConfirmedMessage.isDisplayed();
+            return locate.isDisplayed();
         } catch (NoSuchElementException e) {
             return false;
         }
     }
+
+    @AndroidFindBy (uiAutomator = "new UiSelector().className(\"android.widget.ImageView\").instance(14)")
+    public WebElement favoriteButtonOnProduct;
+
+    @AndroidFindBy(uiAutomator = "new UiSelector().descriptionContains(\"Added to Wishlist\")")
+    public WebElement addedWishMessage;
+
+    @AndroidFindBy(uiAutomator = "new UiSelector().descriptionContains(\"Removed from Wishlist\")")
+    public WebElement removedWishMessage;
+
+    @AndroidFindBy(uiAutomator = "new UiSelector().description(\"Wishlist\")")
+    public WebElement homepageWishlistButton;
+
+    @AndroidFindBy (uiAutomator = "new UiSelector().descriptionContains(\"Men's Analog Watch\")")
+    public WebElement productInWishlist;
+
+    @AndroidFindBy (uiAutomator = "new UiSelector().className(\"android.widget.ImageView\").instance(2)")
+    public WebElement favoriteButtonOnFirstProductInWishlist;
+
 
 
 

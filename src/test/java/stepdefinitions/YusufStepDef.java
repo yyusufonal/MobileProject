@@ -17,7 +17,7 @@ public class YusufStepDef {
     YusufPage page = new YusufPage(Driver.getAppiumDriver());
 
 
-    @Given("Given User logs in with email {string} and password {string}")
+    @Given("User logs in with email {string} and password {string}")
     public void given_user_logs_in_with_email_and_password(String email, String password) {
        ReusableMethods.userLogin(email,password);
     }
@@ -49,8 +49,8 @@ public class YusufStepDef {
     @When("click {string}")
     public void click(String button) {
 
-        WebElement proceedToCheckout = page.getElementByName(button);
-        proceedToCheckout.click();
+        WebElement selectedButton = page.getElementByName(button);
+        selectedButton.click();
         ReusableMethods.wait(2);
 
 
@@ -124,7 +124,7 @@ public class YusufStepDef {
     public void verify_that_order_confirmed_message_is_visible() {
 
         Assert.assertTrue("Order confirmation message is not visible",
-                page.isOrderConfirmedMessageVisible());
+                page.isVisible(page.orderConfirmedMessage));
 
     }
 
@@ -174,6 +174,78 @@ public class YusufStepDef {
         ReusableMethods.wait(2);
         OptionsMet.VerifyElementText(text2);
 
+    }
+
+    @Given("scroll to Men's Analog Watch in homepage")
+    public void scroll_to_men_s_analog_watch_in_homepage() {
+        ReusableMethods.wait(1);
+        ReusableMethods.ekranKaydirmaMethodu(743,2246,300,743,1126);
+    }
+    @Given("verify that favorite button is visible on product and click it")
+    public void verify_that_favorite_button_is_visible_on_product_and_click_it() {
+
+        ReusableMethods.wait(1);
+        Assert.assertTrue("Favori butonu gözükmüyor",page.favoriteButtonOnProduct.isDisplayed());
+        ReusableMethods.wait(1);
+        page.favoriteButtonOnProduct.click();
+
+    }
+    @Given("verify that product be added to the favorite list")
+    public void verify_that_product_be_added_to_the_favorite_list() {
+
+       ReusableMethods.wait(1);
+       Assert.assertTrue("Ürün başarıyla eklenemedi",page.addedWishMessage.isDisplayed());
+       ReusableMethods.wait(1);
+
+    }
+
+    @Given("verify that the Wishlist button is visible, enabled, and navigates to the correct page when clicked.")
+    public void verify_that_the_wishlist_button_is_visible_enabled_and_navigates_to_the_correct_page_when_clicked() {
+
+        OptionsMet.clickAndVerify(page.homepageWishlistButton);
+        ReusableMethods.wait(2);
+        OptionsMet.VerifyElementText("Wishlist");
+        ReusableMethods.wait(1);
+
+    }
+
+    @Then("click favorite button on selected product and click {string} button")
+    public void click_favorite_button_on_selected_product_and_click_button(String text) {
+
+        page.favoriteButtonOnProduct.click();
+        ReusableMethods.wait(1);
+        OptionsMet.clickButtonByDescription(text);
+        ReusableMethods.wait(1);
+
+    }
+    @Then("verify that added product display on the Wishlist page")
+    public void verify_that_added_product_display_on_the_wishlist_page() {
+
+        Assert.assertTrue(page.productInWishlist.isDisplayed());
+        ReusableMethods.wait(1);
+
+    }
+
+    @Given("click {string} on homepage")
+    public void click_on_homepage(String button) {
+
+        OptionsMet.clickButtonByDescription(button);
+
+
+    }
+
+    @Then("click favorite button on first product in Wishlist")
+    public void click_favorite_button_on_first_product_in_wishlist() {
+
+        page.favoriteButtonOnFirstProductInWishlist.click();
+        ReusableMethods.wait(1);
+
+    }
+    @Then("verify that product removed on Wishlist successfully")
+    public void verify_that_product_removed_on_wishlist_successfully() {
+
+        Assert.assertTrue(page.removedWishMessage.isDisplayed());
+        ReusableMethods.wait(1);
 
     }
 
