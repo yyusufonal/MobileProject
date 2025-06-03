@@ -69,5 +69,7 @@ public class SeyyidPage extends BasePage{
 	@AndroidFindBy (uiAutomator = "new UiSelector().className(\"android.widget.ImageView\").instance(12)")
 	public WebElement rightBottomChart;
 
+	@AndroidFindBy (uiAutomator = "new UiSelector().className(\"android.widget.ImageView\").instance(0)")
+	public WebElement backButton;
 
 }
