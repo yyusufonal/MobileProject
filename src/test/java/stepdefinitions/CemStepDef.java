@@ -85,4 +85,20 @@ public class CemStepDef extends OptionsMet {
         Assert.assertTrue(cemPage.ShippingAndReturnTitle.isDisplayed());
     }
 
+    @And("User adds product to cart and confirms that product can be added")
+    public void userAddsProductToCartAndConfirmsThatProductCanBeAdded() {
+        ReusableMethods.ekranKaydirmaMethodu(695,2539,300,707,1707);
+        cemPage.sizeBtn.click();
+        ReusableMethods.wait(1);
+
+        cemPage.addToCartBtn.click();
+        Assert.assertTrue(cemPage.succesProductCartAdded.isDisplayed());
+
+    }
+
+    @And("User adds the product to favorites and confirms that the product has been added to favorites")
+    public void userAddsTheProductToFavoritesAndConfirmsThatTheProductHasBeenAddedToFavorites() {
+        cemPage.favoriteBtn.click();
+        Assert.assertTrue(cemPage.succesWishListAdded.isDisplayed());
+    }
 }

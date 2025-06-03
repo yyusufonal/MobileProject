@@ -44,5 +44,27 @@ public class CemPage {
     @AndroidFindBy(xpath = "(//android.view.View[@content-desc=\"Shipping & Return\"])[2]")
     public WebElement ShippingAndReturnTitle;
 
+    @AndroidFindBy(xpath = "//android.view.View[@content-desc=\"L\"]")
+    public WebElement sizeBtn;
 
+    @AndroidFindBy(xpath = "//android.widget.ImageView[@content-desc=\"Add To Cart\"]")
+    public WebElement addToCartBtn;
+
+    @AndroidFindBy(xpath = "//android.view.View[contains(@content-desc, 'Success') and contains(@content-desc, 'added to cart')]")
+    public WebElement succesProductCartAdded;
+
+    @AndroidFindBy(uiAutomator = "new UiSelector().className(\"android.widget.ImageView\").instance(12)")
+    public WebElement shoppingCartBtn;
+
+    @AndroidFindBy(accessibility = "Shopping Cart")
+    public WebElement shoppingCartTitle;
+
+    @AndroidFindBy(accessibility = "45cm Anime POKEMON Pikachu Large Stuffed Dolls Soft Plush Animal Toy Gift\nL\n$10.00\n1")
+    public WebElement shoppingCartItem;
+
+    @AndroidFindBy(accessibility = "Favorite")
+    public WebElement favoriteBtn;
+
+    @AndroidFindBy(accessibility = "Add\nAdded to Wishlist")
+    public WebElement succesWishListAdded;
 }
