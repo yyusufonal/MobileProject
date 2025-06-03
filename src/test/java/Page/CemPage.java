@@ -2,6 +2,7 @@ package Page;
 
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import io.cucumber.java.bs.A;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -53,18 +54,28 @@ public class CemPage {
     @AndroidFindBy(xpath = "//android.view.View[contains(@content-desc, 'Success') and contains(@content-desc, 'added to cart')]")
     public WebElement succesProductCartAdded;
 
-    @AndroidFindBy(uiAutomator = "new UiSelector().className(\"android.widget.ImageView\").instance(12)")
-    public WebElement shoppingCartBtn;
-
-    @AndroidFindBy(accessibility = "Shopping Cart")
-    public WebElement shoppingCartTitle;
-
-    @AndroidFindBy(accessibility = "45cm Anime POKEMON Pikachu Large Stuffed Dolls Soft Plush Animal Toy Gift\nL\n$10.00\n1")
-    public WebElement shoppingCartItem;
-
     @AndroidFindBy(accessibility = "Favorite")
     public WebElement favoriteBtn;
 
     @AndroidFindBy(accessibility = "Add\nAdded to Wishlist")
     public WebElement succesWishListAdded;
+
+    @AndroidFindBy(uiAutomator = "new UiSelector().className(\"android.widget.ImageView\").instance(2)")
+    public WebElement filterIcon;
+
+    @AndroidFindBy(uiAutomator = "new UiSelector().className(\"android.widget.ImageView\").instance(0)")
+    public WebElement filterExitIcon;
+
+    @AndroidFindBy(accessibility = "Sort By")
+    public WebElement sortBy;
+
+    @AndroidFindBy(accessibility = "Brands")
+    public WebElement Brands;
+
+    @AndroidFindBy(accessibility = "color")
+    public WebElement color;
+
+    @AndroidFindBy(accessibility = "size")
+    public WebElement size;
+
 }

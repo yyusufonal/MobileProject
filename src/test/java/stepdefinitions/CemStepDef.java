@@ -2,13 +2,16 @@ package stepdefinitions;
 
 import Page.CemPage;
 import Page.QueryCardPage;
+import io.appium.java_client.MobileBy;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
+import utilities.Driver;
 import utilities.OptionsMet;
 import utilities.ReusableMethods;
 
@@ -100,5 +103,77 @@ public class CemStepDef extends OptionsMet {
     public void userAddsTheProductToFavoritesAndConfirmsThatTheProductHasBeenAddedToFavorites() {
         cemPage.favoriteBtn.click();
         Assert.assertTrue(cemPage.succesWishListAdded.isDisplayed());
+    }
+
+    @Then("filtering icons such as {string}, {string}, {string} and {string} should be visible")
+    public void filteringIconsSuchAsAndShouldBeVisible(String filter1, String filter2, String filter3, String filter4) {
+
+        cemPage.filterIcon.click();
+        ReusableMethods.wait(1);
+
+        List<String> filters = Arrays.asList(filter1, filter2, filter3, filter4);
+
+        for (String filter : filters) {
+            WebElement filterElement = Driver.getAppiumDriver().findElement(
+                    MobileBy.AndroidUIAutomator("new UiSelector().description(\"" + filter + "\")")
+            );
+            Assert.assertTrue("Filter not visible: " + filter, filterElement.isDisplayed());
+            Assert.assertTrue("Filter not visible: " + filter, filterElement.isEnabled());
+        }
+    }
+
+    @Then("the {string} filter options such as {string}, {string}, {string}, and {string} should be visible and enabled")
+    public void theFilterOptionsSuchAsAndShouldBeVisibleAndEnabled(String filterGroup, String opt1, String opt2, String opt3, String opt4) {
+        cemPage.sortBy.click();
+        List<String> options = Arrays.asList(opt1, opt2, opt3, opt4);
+        for (String option : options) {
+            WebElement optionElement = Driver.getAppiumDriver().findElement(
+                    MobileBy.AndroidUIAutomator("new UiSelector().description(\"" + option + "\")")
+            );
+            Assert.assertTrue("Filter option not visible: " + option, optionElement.isDisplayed());
+            Assert.assertTrue("Filter option not enabled: " + option, optionElement.isEnabled());
+        }
+    }
+
+    @Then("the {string} filter image options should be visible and enabled")
+    public void theFilterImageOptionsShouldBeVisibleAndEnabled(String filterName) {
+        cemPage.sortBy.click();
+        OptionsMet.clickButtonByDescription(filterName);
+        ReusableMethods.wait(1);
+
+        for (int i = 3; i <= 15; i++) {
+            WebElement brandOption = Driver.getAppiumDriver().findElement(
+                    MobileBy.AndroidUIAutomator("new UiSelector().className(\"android.widget.ImageView\").instance(" + i + ")")
+            );
+            Assert.assertTrue("Brand option not visible: instance " + i, brandOption.isDisplayed());
+            Assert.assertTrue("Brand option not enabled: instance " + i, brandOption.isEnabled());
+        }
+    }
+
+    @Then("the {string} filter options should be visible and enabled")
+    public void theFilterOptionsShouldBeVisibleAndEnabled(String filterName) {
+        cemPage.Brands.click();
+        OptionsMet.clickButtonByDescription(filterName);
+        for (int i = 4; i <= 7; i++) {
+            WebElement sizeOption = Driver.getAppiumDriver().findElement(
+                    MobileBy.AndroidUIAutomator("new UiSelector().className(\"android.widget.ImageView\").instance(" + i + ")")
+            );
+            Assert.assertTrue("Size option not visible: instance " + i, sizeOption.isDisplayed());
+            Assert.assertTrue("Size option not enabled: instance " + i, sizeOption.isEnabled());
+        }
+    }
+
+
+    @Then("the {string} filterr options should be visible and enabled")
+    public void theFilterrOptionsShouldBeVisibleAndEnabled(String filterName) {
+        OptionsMet.clickButtonByDescription(filterName);
+
+        for (int i = 5; i <= 10; i++) {
+            WebElement colorOption = Driver.getAppiumDriver().findElement(
+                    MobileBy.AndroidUIAutomator("new UiSelector().className(\"android.widget.ImageView\").instance(" + i + ")")
+            );
+            Assert.assertTrue("Color option not visible: instance " + i, colorOption.isDisplayed());
+            Assert.assertTrue("Color option not enabled: instance " + i, colorOption.isEnabled());
+        }
     }
 }

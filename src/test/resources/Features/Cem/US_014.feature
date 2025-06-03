@@ -15,3 +15,13 @@ Feature: Juniors Category Visibility on Homepage
      Then Verify that the product details page for the selected product is displayed.
      And User adds product to cart and confirms that product can be added
      And User adds the product to favorites and confirms that the product has been added to favorites
+
+  Scenario: [TC_003 -> US_014] Juniors Category Filtering Icons Visibility and Functionality Test
+    Given Select "Men" category.
+    Then filtering icons such as "Sort By", "Brands", "color" and "size" should be visible
+    Then the "Sort By" filter options such as "Newest", "Price Low To High", "Price High To Low", and "Top Rated" should be visible and enabled
+    Then the "Brands" filter image options should be visible and enabled
+    Then the "size" filter options should be visible and enabled
+    Then the "color" filterr options should be visible and enabled
+
+    #Then the product list should update based on the selected filter
