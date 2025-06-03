@@ -108,5 +108,30 @@ public class SeyyidStepDef  {
 		ReusableMethods.wait(2);
 	}
 
+	@Then("click the eddit button")
+	public void click_the_eddit_button() {
+		page.editButton.click();
+	}
+	@Then("scroll down the page")
+	public void scroll_down_the_page() {
+		ReusableMethods.ekranKaydirmaMethodu(521,1421,200,533,1073);
+	}
+	@Then("click the adress name")
+	public void click_the_adress_name() {
+		page.seyyidAdressName.click();
+	}
+
+	@Then("click the back button")
+	public void click_the_back_button() {
+		page.backButton.click();
+	}
+
+
+
+
+
+
+
+
 
 }
