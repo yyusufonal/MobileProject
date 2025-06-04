@@ -6,14 +6,17 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import utilities.Driver;
 
+import java.lang.reflect.Field;
+
 public class HilalPage {
 
     public HilalPage(){
         PageFactory.initElements(new AppiumFieldDecorator(Driver.getAppiumDriver()),this);
     }
 
-    @AndroidFindBy(accessibility = "Category")
-    public WebElement CategoryButton;
+
+    @AndroidFindBy(xpath = "//android.widget.ImageView[@content-desc=\"Category\"]")
+    public static WebElement  CategoryItemButton;
 
     @AndroidFindBy(accessibility = "Men")
     public WebElement MenCategoryItem;
@@ -33,19 +36,40 @@ public class HilalPage {
     @AndroidFindBy(accessibility = "Women")
     public WebElement SideWomanText;
 
-    @AndroidFindBy(xpath = "@AndroidFindBy(xpath = \"//*[contains(@content-desc, 'Womens Short Sleeve Tie Dye Blosue T-Shirt')]\")\n" +
-            "private WebElement Firstcolomn;")
-    public WebElement Firstcolomn;
+    @AndroidFindBy(xpath = "//android.view.View[string-length(@content-desc) > 20][1]")
+    public WebElement FirstProduct;
 
     @AndroidFindBy(accessibility = "M")
     public WebElement Msize;
 
+    @AndroidFindBy(accessibility = "Details:")
+    public WebElement ProductDetails;
+
     @AndroidFindBy(accessibility = "Add To Cart")
     public WebElement AddToCartButton;
 
-    @AndroidFindBy(uiAutomator = "new UiSelector().className(\"android.widget.ImageView\").instance(6)")
-    public WebElement AddedCart;
+    @AndroidFindBy(uiAutomator = "new UiSelector().className(\"android.widget.ImageView\").instance(3)")
+    public WebElement LikeProduct;
 
-    @AndroidFindBy(accessibility = "(18, Wine Red) Womens Short Sleeve Tie Dye Blosue T-Shirt\\nM\\n$21.00\\n1")
-    public WebElement FirstTshirt;
+    @AndroidFindBy(uiAutomator = "new UiSelector().className(\"android.widget.ImageView\").instance(2)")
+    public WebElement FilterProduct;
+
+    @AndroidFindBy(accessibility = "Profile")
+    public WebElement ProfileItemButton;
+
+    @AndroidFindBy(accessibility = "Edit Profile")
+    public WebElement EditProfileItem;
+
+    @AndroidFindBy(xpath = "//android.widget.EditText[1]")
+    public WebElement EditProfileFullName;
+
+    @AndroidFindBy(xpath = "//android.widget.EditText[2]")
+    public WebElement EditProfileFullMail;
+
+    @AndroidFindBy(xpath = "//android.widget.EditText[3]")
+    public WebElement EditProfileFullPhone;
+
+    @AndroidFindBy(accessibility = "Save Changes")
+    public WebElement EditProfileSaveButton;
+
 }

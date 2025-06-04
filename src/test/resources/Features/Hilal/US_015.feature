@@ -1,15 +1,33 @@
-Feature: Us_015 will start
+Feature: Us_015
 
   Background:
     Given User opens the application
-    Given Given User logs in with email "hilaldikman.user@querycart.com" and password "Query.151224"
+    Given User logs in with email "hilaldikman.user@querycart.com" and password "Query.151224"
 
   Scenario: Women category window and subcategories should be displayed in the body section of the home page.
     And wait 3 seconds
-    And "CategoryButton" is click
+    And "CategoryItemButton" is click
     And "CategorySideButton" is click
     And "SideWomanText" is visible
 
   Scenario: The products on the Women category page should be able to perform add to cart actions
-    And "CategoryButton" is click
+    And "CategoryItemButton" is click
     And "WomenCategoryItem" is click
+    And "FirstProduct" is click
+    And wait 3 seconds
+    And "Msize" is click
+    And wait 3 seconds
+    And Scroll the page
+    And "AddToCartButton" is click
+
+  Scenario: The products on the Women category page should be able to perform add to liked list actions
+    And "CategoryItemButton" is click
+    And "WomenCategoryItem" is click
+    And "LikeProduct" is visible
+    And "LikeProduct" is click
+
+  Scenario: Filtering icons should be visible and active
+    And "CategoryItemButton" is click
+    And "WomenCategoryItem" is click
+    And "FilterProduct" is visible
+    And "FilterProduct" is click
