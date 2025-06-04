@@ -11,6 +11,7 @@ import utilities.Driver;
 import utilities.ReusableMethods;
 import org.openqa.selenium.WebElement;
 import java.lang.reflect.Field;
+import utilities.ConfigReader;
 
 public class HilalStepDef {
     HilalPage page = new HilalPage();
@@ -19,6 +20,13 @@ public class HilalStepDef {
     public void openApp() {
         Driver.getAppiumDriver();
         ReusableMethods.wait(5);
+    }
+
+    @Given("User signs in with email {string} and password {string}")
+    public void loginWithCredentials(String emailKey, String passwordKey) {
+        String email = ConfigReader.getProperty(emailKey);
+        String password = ConfigReader.getProperty(passwordKey);
+        ReusableMethods.userLogin(email, password);
     }
 
     @And("{string} is visible")

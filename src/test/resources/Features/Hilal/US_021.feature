@@ -2,7 +2,7 @@ Feature: Us_021
 
   Background:
     Given User opens the application
-    Given User logs in with email "hilaldikman.user@querycart.com" and password "Query.151224"
+    Given User signs in with email "hilal.email" and password "hilal.password"
 
   Scenario: Edit Profile link should be visible and active on Dashboard page
     And "ProfileItemButton" is click

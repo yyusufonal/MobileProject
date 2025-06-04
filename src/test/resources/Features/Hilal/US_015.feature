@@ -2,7 +2,7 @@ Feature: Us_015
 
   Background:
     Given User opens the application
-    Given User logs in with email "hilaldikman.user@querycart.com" and password "Query.151224"
+    Given User signs in with email "hilal.email" and password "hilal.password"
 
   Scenario: Women category window and subcategories should be displayed in the body section of the home page.
     And wait 3 seconds
