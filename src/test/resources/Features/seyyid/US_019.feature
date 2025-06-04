@@ -1,7 +1,7 @@
 Feature: As a registered user, I would like to have a page on the site where I can select and manage my address information before completing the payment.
 
   Background: user log in and select item
-  Given Given User logs in with email "seyyidefe.user@querycart.com" and password "Query.151224"
+  Given User logs in with email "seyyidefe.user@querycart.com" and password "Query.151224"
   Then clicks the flower Print Tshirt
   And click the "S" links
   And click the "S" links

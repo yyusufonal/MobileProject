@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import utilities.ReusableMethods;
 
 import java.nio.file.WatchEvent;
+import java.util.List;
 
 @Getter
 public class YusufPage extends BasePage {
@@ -150,6 +151,18 @@ public class YusufPage extends BasePage {
 
     @AndroidFindBy (uiAutomator = "new UiSelector().className(\"android.widget.ImageView\").instance(2)")
     public WebElement favoriteButtonOnFirstProductInWishlist;
+
+    @AndroidFindBy (uiAutomator = "new UiSelector().className(\"android.widget.ImageView\").instance(18)")
+    public WebElement homepageCartButton;
+
+    @AndroidFindBy (uiAutomator = "new UiSelector().descriptionContains(\"Men's Analog Watch\")")
+    public WebElement productInCartPage;
+
+    @AndroidFindBy(xpath = "//android.view.View[@content-desc and contains(@content-desc, '$')]")
+    public List<WebElement> allProductList;
+
+    @AndroidFindBy(xpath = "//android.view.View[@content-desc=\"See All\"]")
+    public WebElement seeAllButton;
 
 
 

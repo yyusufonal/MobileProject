@@ -1,7 +1,7 @@
 Feature: [US_017] As a registered user, I would like to have a page on the site where I can manage my address information
 
   Background: user log in and select item
-    Given Given User logs in with email "seyyidefe.user@querycart.com" and password "Query.151224"
+    Given User logs in with email "seyyidefe.user@querycart.com" and password "Query.151224"
     Then click the "Profile" link
 
   Scenario: TC_01 Address menu is visible in dashboard sidebar

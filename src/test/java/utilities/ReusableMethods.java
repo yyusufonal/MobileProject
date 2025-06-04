@@ -10,6 +10,7 @@ import io.appium.java_client.touch.offset.PointOption;
 import org.apache.commons.io.FileUtils;
 import org.junit.Test;
 import org.openqa.selenium.*;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.interactions.Pause;
 import org.openqa.selenium.interactions.PointerInput;
 import org.openqa.selenium.interactions.Sequence;
@@ -33,10 +34,7 @@ import java.net.URL;
 import java.security.Key;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class ReusableMethods {
    private static DesiredCapabilities desiredCapabilities=new DesiredCapabilities();
@@ -360,6 +358,100 @@ public class ReusableMethods {
         ReusableMethods.wait(2);
 
 
+    }
+
+    public static void click(WebElement element, int timeoutSeconds) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutSeconds));
+        wait.until(ExpectedConditions.visibilityOf(element));
+        element.click();
+    }
+
+
+    public static void clickRandomProductProperly()  {
+
+        // 1. En aşağı inerek tüm ürünleri topla
+        List<String> productDescriptions = new ArrayList<>();
+        Set<String> seen = new HashSet<>();
+
+        for (int i = 0; i < 50; i++) {
+            List<WebElement> visibleProducts = driver.findElements(
+                    By.xpath("//android.view.View[@content-desc and contains(@content-desc, '$')]")
+            );
+
+            boolean newItem = false;
+            for (WebElement el : visibleProducts) {
+                String desc = el.getAttribute("content-desc");
+                if (seen.add(desc)) {
+                    productDescriptions.add(desc);
+                    newItem = true;
+                }
+            }
+
+            if (!newItem) break;
+
+            ekranKaydirmaMethodu(695, 2515, 300, 743, 1467); // scroll down
+            try { Thread.sleep(1000); } catch (InterruptedException e) {}
+        }
+
+        if (productDescriptions.isEmpty()) {
+            throw new NoSuchElementException("Ürün bulunamadı.");
+        }
+
+        // 2. Random index seç
+        int randomIndex = new Random().nextInt(productDescriptions.size());
+        String selectedDesc = productDescriptions.get(randomIndex);
+        System.out.println("🎯 Seçilen ürün index: " + randomIndex + " ➜ " + selectedDesc);
+
+        // 3. Sayfanın başına dön (yukarı scroll)
+        for (int j = 0; j < 10; j++) {
+            ekranKaydirmaMethodu(743, 1467, 200, 695, 2515); // scroll up
+            wait(1); // daha kısa yeterli
+        }
+
+        // 4. Tekrar aşağı inerek hedef ürünü bul ve tıkla
+        Set<String> clicked = new HashSet<>();
+        for (int k = 0; k < 50; k++) {
+            List<WebElement> visible = driver.findElements(
+                    By.xpath("//android.view.View[@content-desc and contains(@content-desc, '$')]")
+            );
+
+            for (WebElement el : visible) {
+                String desc = el.getAttribute("content-desc");
+                if (desc.equals(selectedDesc)) {
+                    el.click();
+                    return;
+                }
+            }
+
+            ekranKaydirmaMethodu(695, 2515, 200, 743, 1467); // scroll down
+            ReusableMethods.wait(1);
+        }
+
+        throw new NoSuchElementException("Seçilen ürün bulunamadı: " + selectedDesc);
+    }
+
+    public static void selectFirstAvailableVariant() {
+        AppiumDriver driver = Driver.getAppiumDriver();
+
+        // Olası varyasyon isimleri (içerik örneklerine göre genişletebilirsin)
+        String[] variantOptions = {"Black", "Green", "Brown","White","S", "M", "L", "XL", "XS", "XXL"};
+
+        for (String optionText : variantOptions) {
+            try {
+                WebElement option = (WebElement) driver.findElement(MobileBy.AndroidUIAutomator(
+                        "new UiSelector().description(\"" + optionText + "\")"
+                ));
+
+                if (option.isDisplayed() && option.isEnabled()) {
+                    option.click();
+                    System.out.println("✅ Seçilen varyasyon: " + optionText);
+                    Thread.sleep(500); // biraz bekle, sonraki işlem için
+                }
+            } catch (Exception e) {
+                // Seçenek o üründe yoksa geç
+                System.out.println("⚠️ Varyasyon bulunamadı: " + optionText);
+            }
+        }
     }
 
 

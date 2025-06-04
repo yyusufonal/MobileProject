@@ -8,6 +8,8 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.ConfigReader;
 import utilities.Driver;
 import utilities.OptionsMet;
@@ -248,6 +250,45 @@ public class YusufStepDef {
         ReusableMethods.wait(1);
 
     }
+
+    @Given("verify that cart button displayed and active")
+    public void verify_that_cart_button_displayed_and_active() {
+
+        OptionsMet.clickAndVerify(page.homepageWishlistButton);
+        ReusableMethods.wait(1);
+        OptionsMet.VerifyElementText("Shopping Cart");
+        ReusableMethods.wait(1);
+    }
+
+
+    @Then("click Men category choose random  ,choose color or size and click {string} button")
+    public void click_men_category_choose_random_choose_color_or_size_and_click_button(String button) {
+
+        ReusableMethods.wait(1);
+        ReusableMethods.click(page.menCategoryButonu, 10);
+        ReusableMethods.wait(1);
+        ReusableMethods.clickRandomProductProperly();
+        ReusableMethods.wait(2);
+        ReusableMethods.selectFirstAvailableVariant();
+        ReusableMethods.ekranKaydirmaMethodu(635,2677,300,665,1353);
+        ReusableMethods.wait(2);
+        page.addToCartButonu.click();
+        ReusableMethods.wait(1);
+        OptionsMet.touchDown(1276,2869);
+        ReusableMethods.wait(2);
+
+    }
+
+    @Then("click cart button and verify that added product is displayed in cart")
+    public void click_cart_button_and_verify_that_product_is_displayed_in_cart() {
+
+    }
+
+    @Then("click {string} button on Men's Analog Watch and verify that that removed from cart")
+    public void click_button_on_men_s_analog_watch_and_verify_that_that_removed_from_cart(String button) {
+
+    }
+
 
 
 
