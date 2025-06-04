@@ -6,6 +6,7 @@ import io.cucumber.java.en.When;
 import io.cucumber.java.en.And;
 import org.junit.Assert;
 import Page.HilalPage;
+import org.openqa.selenium.support.PageFactory;
 import utilities.Driver;
 import utilities.ReusableMethods;
 import org.openqa.selenium.WebElement;
@@ -65,6 +66,7 @@ public class HilalStepDef {
     @And("send {string} to {string}")
     public void sendKeysToElement(String text, String elementName) {
         WebElement element = getElementByName(elementName);
+        element.click();
         element.clear();
         element.sendKeys(text);
     }
@@ -74,9 +76,16 @@ public class HilalStepDef {
         ReusableMethods.wait(seconds);
     }
 
-    @And("Scroll the page to {string}")
-    public void scrollToElement(String elementName) {
-        ReusableMethods.scrollWithUiScrollable(elementName);
+    @And("Scroll the page")
+    public void scrollThePage() {
+        try {
+            // Ekranı aşağı kaydıralım (başlangıç ve bitiş koordinatları)
+            ReusableMethods.ekranKaydirmaMethodu(1000, 1000, 500, 500, 1);
+            ReusableMethods.wait(2);
+        } catch (Exception e) {
+            ReusableMethods.ekranKaydirmaMethodu(1000, 1000, 500, 500, 1);
+            ReusableMethods.wait(2);
+        }
     }
 
     private WebElement getElementByName(String elementName) {
@@ -88,3 +97,12 @@ public class HilalStepDef {
         }
     }
 }
+
+
+
+
+
+
+
+
+
