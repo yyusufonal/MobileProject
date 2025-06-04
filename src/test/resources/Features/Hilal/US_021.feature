@@ -29,5 +29,5 @@ Feature: Us_021
     And "EditProfileSaveButton" is click
     And wait 5 seconds
     And "EditProfileItem" is click
-    And send "changeName" to "EditProfileFullName"
+    And send "hilaldikman" to "EditProfileFullName"
     And "EditProfileSaveButton" is click
