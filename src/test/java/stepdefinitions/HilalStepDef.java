@@ -47,30 +47,6 @@ public class HilalStepDef {
         Assert.assertTrue(element.isEnabled());
     }
 
-    @And("{string} is disabled")
-    public void elementIsDisabled(String elementName) {
-        WebElement element = getElementByName(elementName);
-        Assert.assertFalse(element.isEnabled());
-    }
-
-    @And("{string} text is {string}")
-    public void elementTextIs(String elementName, String expectedText) {
-        WebElement element = getElementByName(elementName);
-        Assert.assertEquals(expectedText, element.getText());
-    }
-
-    @And("{string} contains text {string}")
-    public void elementContainsText(String elementName, String expectedText) {
-        WebElement element = getElementByName(elementName);
-        Assert.assertTrue(element.getText().contains(expectedText));
-    }
-
-    @And("clear {string}")
-    public void clearElement(String elementName) {
-        WebElement element = getElementByName(elementName);
-        element.clear();
-    }
-
     @And("send {string} to {string}")
     public void sendKeysToElement(String text, String elementName) {
         WebElement element = getElementByName(elementName);
@@ -105,12 +81,3 @@ public class HilalStepDef {
         }
     }
 }
-
-
-
-
-
-
-
-
-
