@@ -551,9 +551,36 @@ public class ReusableMethods {
     }
 
 
+    public static void kaydırvetıkla(String elementText) {
+        AndroidDriver driver = (AndroidDriver) Driver.getAppiumDriver();
+
+        driver.findElement(AppiumBy.androidUIAutomator(
+                "new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(" +
+                        "new UiSelector().text(\"" + elementText + "\"))")).click();
+    }
+    public static void clickFirstDeliveredOrderIconn() {
+        AndroidDriver driver = (AndroidDriver) Driver.getAppiumDriver();
+
+        for (int i = 0; i < 20; i++) { // Yeterli kaydırma turu için 20 seçildi, ihtiyaca göre arttırabilirsin
+            List<WebElement> deliveredIcons = driver.findElements(
+                    By.xpath("//android.widget.ImageView[contains(@content-desc, 'Delivered')]")
+            );
+
+            if (!deliveredIcons.isEmpty()) {
+                deliveredIcons.get(0).click(); // İlk bulduğunu tıkla
+                return;
+            }
+
+            // Eğer bulunamadıysa aşağı kaydır
+            ekranKaydirmaMethodu(695, 2515, 300, 743, 1467); // kendi kaydırma fonksiyonun
+            try { Thread.sleep(1000); } catch (InterruptedException e) {}
+        }
+        throw new NoSuchElementException("Hiç Delivered sipariş bulunamadı!");
+    }
 
 
-
-
+    public static boolean isTextVisibleAndEnabled(String text) {
+        return false;
+    }
 
 }

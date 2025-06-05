@@ -37,6 +37,24 @@ public class EmrePage extends BasePage {
     @AndroidFindBy(uiAutomator = "new UiSelector().description(\"Favorite\")")
     public  WebElement Favbuton;
 
+    @AndroidFindBy(uiAutomator = "new UiSelector().className(\"android.widget.ImageView\").instance(2)")
+    public WebElement mencategorybuton;
+
+    @AndroidFindBy(uiAutomator = "new UiSelector().className(\"android.widget.ImageView\").instance(10)")
+    public WebElement adidas21wishbuton;
+
+    @AndroidFindBy(uiAutomator = "new UiSelector().className(\"android.widget.ImageView\").instance(3)")
+    public WebElement adidascoprawishbuton;
+
+    @AndroidFindBy(accessibility = "Men")
+    public WebElement MenText;
+
+    @AndroidFindBy(xpath = "//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.view.View/android.view.View[1]/android.widget.ImageView")
+    public WebElement MenSide;
+
+    @AndroidFindBy(xpath = "//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.ImageView")
+    public WebElement Menfilter;
+
 
 
 

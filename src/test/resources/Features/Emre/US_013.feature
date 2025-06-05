@@ -1,15 +1,28 @@
 Feature: See categories and products of the Menu menu on the home page
+  Background: User login
+    * User logs in with email "emreyilmaz.user@querycart.com" and password "Query.151224"
+
 
   Scenario: Men category and subcategories are visible and active
-    Given The user is logged in
-    And The homepage is loaded
-    Then The men category and its subcategories should be visible and active
+    * User confirms to be on the homepage
+    * click the "Category" link
+    * User click Men side
+    * test the visibility of the "Men" text
 
   Scenario: Perform operations on men category products
-    Given The user is on the men category page
-    When The user tries to add a product to cart, favorites, or view details
-    Then The operation should be successful
+
+    * User confirms to be on the homepage
+    * click the "Category" link
+    * choose men category
+    * User click adidas21 wishlist
+    * User choose adidas corap
+    * Guest choose black color
+    * "AddToCartButton" is click
+
 
   Scenario: Filtering icons are visible and active
-    Given The user is on the men category page
-    Then Filtering icons should be visible and active
+    * click the "Category" link
+    * choose men category
+    * click men filter
+
+

@@ -4,8 +4,7 @@ Feature: Create a favorites list
   
 
   Scenario: Wishlist button is visible and active on the homepage navbar
-    * User confirms to be on the homepage
-    * User click WishList
+    * verify that the Wishlist button is visible, enabled, and navigates to the correct page when clicked.
    
 
   Scenario: Add products to the wishlist
