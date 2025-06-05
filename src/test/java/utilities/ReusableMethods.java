@@ -37,6 +37,7 @@ import java.time.Duration;
 import java.util.*;
 
 public class ReusableMethods {
+    public static String selectedProductDesc;
    private static DesiredCapabilities desiredCapabilities=new DesiredCapabilities();
 
 
@@ -400,11 +401,12 @@ public class ReusableMethods {
         // 2. Random index seç
         int randomIndex = new Random().nextInt(productDescriptions.size());
         String selectedDesc = productDescriptions.get(randomIndex);
+        selectedProductDesc = selectedDesc; // Ürünü kaydetme kısmı — artık başka steplerde erişebilirsin
         System.out.println("🎯 Seçilen ürün index: " + randomIndex + " ➜ " + selectedDesc);
 
         // 3. Sayfanın başına dön (yukarı scroll)
         for (int j = 0; j < 10; j++) {
-            ekranKaydirmaMethodu(743, 1467, 200, 695, 2515); // scroll up
+            ekranKaydirmaMethodu(743, 1467, 300, 695, 2515); // scroll up
             wait(1); // daha kısa yeterli
         }
 
@@ -423,9 +425,10 @@ public class ReusableMethods {
                 }
             }
 
-            ekranKaydirmaMethodu(695, 2515, 200, 743, 1467); // scroll down
+            ekranKaydirmaMethodu(695, 2515, 300, 743, 1467); // scroll down
             ReusableMethods.wait(1);
         }
+
 
         throw new NoSuchElementException("Seçilen ürün bulunamadı: " + selectedDesc);
     }
@@ -446,6 +449,7 @@ public class ReusableMethods {
                     option.click();
                     System.out.println("✅ Seçilen varyasyon: " + optionText);
                     Thread.sleep(500); // biraz bekle, sonraki işlem için
+                    break;
                 }
             } catch (Exception e) {
                 // Seçenek o üründe yoksa geç
@@ -453,6 +457,53 @@ public class ReusableMethods {
             }
         }
     }
+
+    public static void verifySelectedProductInCart() {
+
+        List<WebElement> cartItems = driver.findElements(
+                By.xpath("//android.view.View[@content-desc and contains(@content-desc, '$')]")
+        );
+
+        // Ürün adını seçilen description'dan ayıkla (ilk satır)
+        String selectedProductName = selectedProductDesc.split("\n")[0].trim();
+        System.out.println("🎯 Kontrol edilecek ürün adı: " + selectedProductName);
+
+        boolean found = false;
+
+        for (WebElement item : cartItems) {
+            String cartDesc = item.getAttribute("content-desc");
+            System.out.println("📦 Sepetteki ürün:\n" + cartDesc);
+
+            if (cartDesc.contains(selectedProductName)) {
+                found = true;
+                break;
+            }
+        }
+
+        if (found) {
+            System.out.println("✅ Ürün sepette bulundu: " + selectedProductName);
+        } else {
+            throw new AssertionError("❌ Ürün sepette bulunamadı: " + selectedProductName);
+        }
+    }
+
+    public static void verifyProductIsNotInCart() {
+        String productName = selectedProductDesc.split("\n")[0].trim();
+
+        List<WebElement> cartItems = driver.findElements(
+                By.xpath("//android.view.View[@content-desc and contains(@content-desc, '$')]")
+        );
+
+        for (WebElement item : cartItems) {
+            String desc = item.getAttribute("content-desc");
+            if (desc.contains(productName)) {
+                throw new AssertionError("❌ Ürün hala sepette: " + productName);
+            }
+        }
+
+        System.out.println("✅ Ürün sepette artık yok: " + productName);
+    }
+
 
 
 
