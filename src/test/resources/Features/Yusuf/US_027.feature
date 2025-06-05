@@ -21,7 +21,7 @@ Feature: US_027As a registered user, I want to have a cart on the site and I wan
     Then click cart button
     And verify that subtotal value is displayed
 
-  @TC003
+
   Scenario: TC004 Verify that the Proceed to Checkout button is visible, active, and redirects to the Checkout page
 
     Given click Men category choose random product,choose color or size and click "Add To Cart" button

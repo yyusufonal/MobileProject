@@ -164,6 +164,15 @@ public class YusufPage extends BasePage {
     @AndroidFindBy(xpath = "(//android.view.View[@content-desc=\"Go to Shopping\"])")
     public WebElement goToShoppingButton;
 
+    @AndroidFindBy(xpath = "(//android.widget.ImageView[@content-desc=\"Profile\"])")
+    public WebElement profileButton;
+
+    @AndroidFindBy(xpath = "(//android.widget.ImageView[@content-desc=\"Logout\"])")
+    public WebElement logoutButton;
+
+    @AndroidFindBy(uiAutomator = "new UiSelector().descriptionContains(\"Logged Out Successfully.\")")
+    public WebElement logoutMessage;
+
 
 
 

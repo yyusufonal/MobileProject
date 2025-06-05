@@ -54,7 +54,7 @@ public class YusufStepDef {
     public void click(String button) {
 
         WebElement selectedButton = page.getElementByName(button);
-        selectedButton.click();
+        ReusableMethods.click(selectedButton,10);
         ReusableMethods.wait(2);
 
 
@@ -320,6 +320,19 @@ public class YusufStepDef {
         ReusableMethods.wait(1);
         OptionsMet.VerifyElementText(title);
 
+    }
+
+    @Then("click logout button")
+    public void click_logout_button() {
+
+        OptionsMet.touchDown(281,2707);
+    }
+
+    @Given("verify that logout successfully")
+    public void verify_that_logout_successfully() {
+
+        ReusableMethods.wait(1);
+        Assert.assertTrue(page.logoutMessage.isDisplayed());
     }
 
 
