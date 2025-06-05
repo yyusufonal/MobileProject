@@ -1,39 +1,34 @@
 Feature: Registered user login
 
-    Background:
-      Given The application is opened
-      And The user clicks the profile icon on the home page
-      And The login page is displayed
+  Background:
+    Given The application is opened
+    And The user clicks the profile icon on the home page
+    And The login options screen is displayed
+    And The user clicks the "Sign In" option
+    And The user clicks the "Use email instead" option
 
-    @US_008/TC_001
+  #US_008/TC_001
+  Scenario: The user should be able to log in with valid credentials
+    Given The user logs in with email "ummuhankacmaz.user@querycart.com" and password "Query.151224"
+    And The user clicks the "Remember Me" checkbox
+    And The user clicks the "Sign In" button login
+    And I should see the "Successfully logged in" message login
 
-    Scenario: The user should be able to log in with valid credentials
-      When The user enters a valid email or phone number
-      And The user enters a valid password
-      And The user selects the "Remember Me" checkbox (if any)
-      And The user clicks the "Sign In" button
-      And The user should be successfully logged in
 
-    @US_008/TC_002
+  #US_008/TC_002
+  Scenario: The user cannot log in with an invalid password
+    Given The user logs in with email "ummuhankacmaz.user@querycart.com" and password "WrongPass123"
+    And The user clicks the "Sign In" button login
+    And I should see the "Incorrect password" error message
 
-    Scenario: The user cannot log in with an invalid password
-      When The user enters a valid email
-      And The user enters an invalid password
-      And The user clicks the "Sign In" button
-      And An error message for incorrect login should be displayed
+  #US_008/TC_003
+  Scenario: The user cannot log in with empty email field
+    Given The user logs in with email "" and password "Query.151224"
+    And The user clicks the "Sign In" button login
+    And I should see the "Email is required" warning message
 
-    @US_008/TC_003
-
-    Scenario: The user cannot log in with empty fields
-      When The email field is left blank
-      And The user enters a valid password
-      And The user clicks the "Sign In" button
-      And A warning message for empty fields should be displayed
-
-    @US_008/TC_004
-
-    Scenario: The user cannot log in with an invalid email format
-      When The user enters an invalid email format (e.g. abc@)
-      And The user enters a valid password
-      And The user clicks the "Sign In" button
-      And A warning message for invalid email format should be displayed
+  #US_008/TC_004
+  Scenario: The user cannot log in with an invalid email format
+    Given The user logs in with email "abc@" and password "Query.151224"
+    And The user clicks the "Sign In" button login
+    And I should see the "Please enter a valid email address" warning message
