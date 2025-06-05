@@ -126,6 +126,15 @@ public class SeyyidStepDef  {
 		page.backButton.click();
 	}
 
+	@Then("test the visibility of the Success Address Added Successfully! text")
+	public void test_the_visibility_of_the_success_address_added_successfully_text() {
+		page.successNewAdressMessage.isDisplayed();
+	}
+
+	@Then("test the visbility of the upsdated adress")
+	public void test_the_visbility_of_the_upsdated_adress() {
+		page.successUpdate.isDisplayed();
+	}
 
 
 

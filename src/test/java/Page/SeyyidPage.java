@@ -72,4 +72,16 @@ public class SeyyidPage extends BasePage{
 	@AndroidFindBy (uiAutomator = "new UiSelector().className(\"android.widget.ImageView\").instance(0)")
 	public WebElement backButton;
 
+	@AndroidFindBy(uiAutomator = "\"new UiSelector().descriptionContains(\\\"Success\\\")\"")
+	public WebElement successNewAdressMessage;
+
+	@AndroidFindBy (uiAutomator = "new UiSelector().descriptionContains(\"Address Updated Successfully\")")
+	public WebElement successUpdateMessage;
+
+	@AndroidFindBy(uiAutomator = "new UiSelector().descriptionContains(\"seyyidefekaraman47@gmail.com\")")
+	public WebElement successUpdate;
+
+
+
+
 }
