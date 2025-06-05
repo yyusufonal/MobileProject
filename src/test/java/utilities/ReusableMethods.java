@@ -433,29 +433,43 @@ public class ReusableMethods {
         throw new NoSuchElementException("Seçilen ürün bulunamadı: " + selectedDesc);
     }
 
-    public static void selectFirstAvailableVariant() {
-        AppiumDriver driver = Driver.getAppiumDriver();
+    public static boolean selectFirstAvailableVariant() throws InterruptedException {
 
-        // Olası varyasyon isimleri (içerik örneklerine göre genişletebilirsin)
-        String[] variantOptions = {"Black", "Green", "Brown","White","S", "M", "L", "XL", "XS", "XXL"};
+        String[] variantOptions = {"Black", "Green", "Brown", "White", "S", "M", "L", "XL", "XS", "XXL"};
 
         for (String optionText : variantOptions) {
             try {
-                WebElement option = (WebElement) driver.findElement(MobileBy.AndroidUIAutomator(
+                WebElement option = driver.findElement(MobileBy.AndroidUIAutomator(
                         "new UiSelector().description(\"" + optionText + "\")"
                 ));
 
                 if (option.isDisplayed() && option.isEnabled()) {
                     option.click();
                     System.out.println("✅ Seçilen varyasyon: " + optionText);
-                    Thread.sleep(500); // biraz bekle, sonraki işlem için
-                    break;
+                    Thread.sleep(500);
+
+                    // Stok kontrolü
+                    List<WebElement> stockOutElements = driver.findElements(
+                            MobileBy.AndroidUIAutomator("new UiSelector().description(\"Stock Out\")")
+                    );
+
+                    if (stockOutElements.isEmpty()) {
+                        // Stok var
+                        return true; // break yerine direk return, method biter
+                    } else {
+                        // Stok yok
+                        System.out.println("⚠️ Stok yok: " + optionText);
+                        break; // stok yoksa döngüyü kır, başka varyasyona geçme
+                    }
                 }
             } catch (Exception e) {
-                // Seçenek o üründe yoksa geç
                 System.out.println("⚠️ Varyasyon bulunamadı: " + optionText);
             }
         }
+
+        // Döngü kırıldı veya hiç varyasyon seçilemedi
+        System.out.println("⚠️ Stoklu varyasyon bulunamadı.");
+        return false;
     }
 
     public static void verifySelectedProductInCart() {

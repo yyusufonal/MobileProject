@@ -264,17 +264,23 @@ public class YusufStepDef {
 
 
     @Then("click Men category choose random  ,choose color or size and click {string} button")
-    public void click_men_category_choose_random_choose_color_or_size_and_click_button(String button) {
+    public void click_men_category_choose_random_choose_color_or_size_and_click_button(String button) throws InterruptedException {
 
         ReusableMethods.wait(1);
         ReusableMethods.click(page.menCategoryButonu, 10);
         ReusableMethods.wait(1);
         ReusableMethods.clickRandomProductProperly();
         ReusableMethods.wait(2);
-        ReusableMethods.selectFirstAvailableVariant();
-        ReusableMethods.ekranKaydirmaMethodu(635,2677,300,665,1353);
-        ReusableMethods.click(page.addToCartButonu,10);
+        boolean variantSelected = ReusableMethods.selectFirstAvailableVariant();
 
+        if (!variantSelected) {
+            OptionsMet.KeyBack(); // ürün detayından çık
+            // istersen burada başka ürün seçmek için tekrar döngü başlatabilirsin
+        } else {
+            ReusableMethods.ekranKaydirmaMethodu(635, 2677, 300, 665, 1353);
+            ReusableMethods.click(page.addToCartButonu, 10);
+            // devam eden işlemler
+        }
 
 
     }
