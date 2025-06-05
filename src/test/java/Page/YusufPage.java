@@ -161,8 +161,10 @@ public class YusufPage extends BasePage {
     @AndroidFindBy(xpath = "//android.view.View[@content-desc and contains(@content-desc, '$')]")
     public List<WebElement> allProductList;
 
-    @AndroidFindBy(xpath = "//android.view.View[@content-desc=\"See All\"]")
-    public WebElement seeAllButton;
+    @AndroidFindBy(xpath = "(//android.view.View[@content-desc=\"Go to Shopping\"])")
+    public WebElement goToShoppingButton;
+
+
 
 
 

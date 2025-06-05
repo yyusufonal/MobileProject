@@ -263,23 +263,20 @@ public class YusufStepDef {
     }
 
 
-    @Then("click Men category choose random  ,choose color or size and click {string} button")
-    public void click_men_category_choose_random_choose_color_or_size_and_click_button(String button) throws InterruptedException {
+    @Then("click Men category choose random product,choose color or size and click {string} button")
+    public void click_men_category_choose_random_product_choose_color_or_size_and_click_button(String button) throws InterruptedException {
 
         ReusableMethods.wait(1);
         ReusableMethods.click(page.menCategoryButonu, 10);
         ReusableMethods.wait(1);
-        ReusableMethods.clickRandomProductProperly();
-        ReusableMethods.wait(2);
-        boolean variantSelected = ReusableMethods.selectFirstAvailableVariant();
+        boolean variantSelected = ReusableMethods.selectProductWithAvailableVariant(5);
 
-        if (!variantSelected) {
-            OptionsMet.KeyBack(); // ürün detayından çık
-            // istersen burada başka ürün seçmek için tekrar döngü başlatabilirsin
-        } else {
+        if (variantSelected) {
             ReusableMethods.ekranKaydirmaMethodu(635, 2677, 300, 665, 1353);
             ReusableMethods.click(page.addToCartButonu, 10);
-            // devam eden işlemler
+
+        } else {
+            throw new RuntimeException("Uygun varyantlı ürün bulunamadı!");
         }
 
 
@@ -301,6 +298,27 @@ public class YusufStepDef {
         ReusableMethods.wait(1);
         ReusableMethods.verifyProductIsNotInCart();
 
+
+    }
+
+    @Then("click cart button")
+    public void click_cart_button() {
+
+        OptionsMet.touchDown(1276,2869);
+    }
+
+    @Then("verify that subtotal value is displayed")
+    public void verify_that_subtotal_value_is_displayed() {
+        ReusableMethods.wait(2);
+        ReusableMethods.checkSubtotalVisibilityAndLogValue();
+
+    }
+
+    @Then("verify that the page navigated to is the {string} title in the page")
+    public void verify_that_the_page_navigated_to_is_title_in_the_page(String title) {
+
+        ReusableMethods.wait(1);
+        OptionsMet.VerifyElementText(title);
 
     }
 

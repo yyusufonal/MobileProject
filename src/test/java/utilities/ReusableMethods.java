@@ -8,6 +8,7 @@ import io.appium.java_client.touch.ActionOptions;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 import org.apache.commons.io.FileUtils;
+import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.NoSuchElementException;
@@ -448,18 +449,16 @@ public class ReusableMethods {
                     System.out.println("✅ Seçilen varyasyon: " + optionText);
                     Thread.sleep(500);
 
-                    // Stok kontrolü
-                    List<WebElement> stockOutElements = driver.findElements(
+                    // Stok var mı kontrolü (Stock Out görünmüyorsa devam)
+                    boolean stokYok = !driver.findElements(
                             MobileBy.AndroidUIAutomator("new UiSelector().description(\"Stock Out\")")
-                    );
+                    ).isEmpty();
 
-                    if (stockOutElements.isEmpty()) {
-                        // Stok var
-                        return true; // break yerine direk return, method biter
-                    } else {
-                        // Stok yok
+                    if (stokYok) {
                         System.out.println("⚠️ Stok yok: " + optionText);
-                        break; // stok yoksa döngüyü kır, başka varyasyona geçme
+                        return false;
+                    } else {
+                        return true;
                     }
                 }
             } catch (Exception e) {
@@ -470,6 +469,26 @@ public class ReusableMethods {
         // Döngü kırıldı veya hiç varyasyon seçilemedi
         System.out.println("⚠️ Stoklu varyasyon bulunamadı.");
         return false;
+    }
+    public static boolean selectProductWithAvailableVariant(int maxDeneme) throws InterruptedException {
+        boolean variantSelected = false;
+        int denemeSayisi = 0;
+
+        while (!variantSelected && denemeSayisi < maxDeneme) {
+            clickRandomProductProperly();
+            wait(2);
+
+            variantSelected = selectFirstAvailableVariant();
+
+            if (!variantSelected) {
+                OptionsMet.KeyBack(); // Ürün detayından çık
+                wait(1);
+            }
+
+            denemeSayisi++;
+        }
+
+        return variantSelected;
     }
 
     public static void verifySelectedProductInCart() {
@@ -517,6 +536,22 @@ public class ReusableMethods {
 
         System.out.println("✅ Ürün sepette artık yok: " + productName);
     }
+
+    public static void checkSubtotalVisibilityAndLogValue() {
+        // 1. Subtotal etiketi görünüyor mu?
+        OptionsMet.VerifyElementText("Subtotal");
+
+        // 2. Değer olan alan görünüyor mu?
+        WebElement subtotalValue = driver.findElement(By.xpath("//android.view.View[@content-desc='Subtotal']/following-sibling::android.view.View"));
+        Assert.assertTrue("Subtotal değeri görünmüyor!", subtotalValue.isDisplayed());
+
+        // 3. Değeri terminale yazdır
+        String value = subtotalValue.getAttribute("content-desc");
+        System.out.println("Subtotal değeri: " + value);
+    }
+
+
+
 
 
 
