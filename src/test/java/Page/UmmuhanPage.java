@@ -2,10 +2,8 @@ package Page;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import static utilities.Driver.getAppiumDriver;
 
 public class UmmuhanPage extends BasePage {
 
@@ -34,9 +32,6 @@ public class UmmuhanPage extends BasePage {
     @AndroidFindBy(accessibility = "Profile")
     public WebElement profileIcon;
 
-    @AndroidFindBy(xpath = "//android.view.View[@content-desc='Profile']")
-    public WebElement profileButton;
-
     @AndroidFindBy(xpath = "(//android.view.View[@content-desc=\"Sign In\"])")
     public WebElement signInButton;
 
@@ -44,7 +39,7 @@ public class UmmuhanPage extends BasePage {
     public WebElement useEmailInsteadButton;
 
     @AndroidFindBy(xpath = "(//android.view.View[@content-desc='Sign In'])[2]")
-    public WebElement secondSignInButton;
+    public WebElement loginSignInButton;
 
     @AndroidFindBy(xpath = "//android.view.View[@content-desc='Success\nLogin Successfully.']")
     public WebElement successLoginMessage;
@@ -58,14 +53,8 @@ public class UmmuhanPage extends BasePage {
     @AndroidFindBy(xpath = "(//android.widget.ImageView)[2]")
     public WebElement rememberImageView;
 
-    @AndroidFindBy(xpath = "//android.view.View[@content-desc='Logout']")
-    public WebElement logoutButton;
-
     @AndroidFindBy(accessibility = "Welcome Back, ")
     public WebElement welcomeMessage;
-
-    @AndroidFindBy(accessibility = "Order History")
-    public WebElement orderHistorySection;
 
     @AndroidFindBy(accessibility = "Total Orders")
     public WebElement totalOrders;
@@ -79,31 +68,12 @@ public class UmmuhanPage extends BasePage {
     @AndroidFindBy(accessibility = "Wallet Balance")
     public WebElement walletBalance;
 
-    @AndroidFindBy(accessibility = "Error\nInvalid credentials or you are blocked")
-    public WebElement incorrectLoginMessage;
-
-    @AndroidFindBy(accessibility = "Enter Valid Email Address")
-    public WebElement invalidEmailWarning;
-
-    @AndroidFindBy(accessibility = "Passord is required")
-    public WebElement emptyFieldWarning;
-
-    @AndroidFindBy(accessibility = "Don't have an account?")
-    public WebElement dontHaveAccountText;
-
     @AndroidFindBy(xpath = "//android.view.View[@content-desc='Order History List']")
     public WebElement orderHistoryList;
 
+    @AndroidFindBy(xpath = "(//android.widget.ImageView)[2]")
+    public WebElement secondImageView;
 
-    public void navigateToTab(String tabName) {
-        String xpath = "//android.view.View[@content-desc='" + tabName + "']";
-        WebElement tabElement = getAppiumDriver().findElement(By.xpath(xpath));
-        tabElement.click();
-    }
-
-    public WebElement getSection(String sectionName) {
-        String xpath = "//android.view.View[@content-desc='" + sectionName + "']";
-        return getAppiumDriver().findElement(By.xpath(xpath));
-    }
-
+    @AndroidFindBy(accessibility = "My Account")
+    public WebElement myAccountTab;
 }
