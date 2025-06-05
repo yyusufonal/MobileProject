@@ -21,7 +21,6 @@ Feature: Add products to cart without registration
 
   Scenario: Product can be added to cart without registration
 
-
     * choose Adidas 3-Stripes Cushioned Crew Socks in men category
     * Guest choose black color
     * "AddToCartButton" is click
