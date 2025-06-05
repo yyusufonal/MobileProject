@@ -2,7 +2,7 @@ Feature: US_026 As a registered user, I want to have a favorite products page on
 
     Background: user login with email and password
 
-        Given User logs in with email "yusufonal.user@querycart.com" and password "Query.151224"
+        Given User signs in with email "yusuf.email" and password "yusuf.password"
 
 
     Scenario:TC001 Verify that the favorite icon is visible and active on products and that a product can be added to the favorites list

@@ -15,6 +15,8 @@ import utilities.Driver;
 import utilities.OptionsMet;
 import utilities.ReusableMethods;
 
+import static utilities.ReusableMethods.verifySelectedProductInCart;
+
 public class YusufStepDef {
     YusufPage page = new YusufPage(Driver.getAppiumDriver());
 
@@ -271,21 +273,28 @@ public class YusufStepDef {
         ReusableMethods.wait(2);
         ReusableMethods.selectFirstAvailableVariant();
         ReusableMethods.ekranKaydirmaMethodu(635,2677,300,665,1353);
-        ReusableMethods.wait(2);
-        page.addToCartButonu.click();
-        ReusableMethods.wait(1);
-        OptionsMet.touchDown(1276,2869);
-        ReusableMethods.wait(2);
+        ReusableMethods.click(page.addToCartButonu,10);
+
+
 
     }
 
     @Then("click cart button and verify that added product is displayed in cart")
     public void click_cart_button_and_verify_that_product_is_displayed_in_cart() {
 
+        OptionsMet.touchDown(1276,2869);
+        ReusableMethods.wait(2);
+        verifySelectedProductInCart();
+
     }
 
-    @Then("click {string} button on Men's Analog Watch and verify that that removed from cart")
-    public void click_button_on_men_s_analog_watch_and_verify_that_that_removed_from_cart(String button) {
+    @Then("click {string} button on added product and verify that that removed from cart")
+    public void click_button_on_added_product_and_verify_that_that_removed_from_cart(String button) {
+
+        ReusableMethods.clickButtonByDescription(button);
+        ReusableMethods.wait(1);
+        ReusableMethods.verifyProductIsNotInCart();
+
 
     }
 
