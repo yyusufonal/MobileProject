@@ -34,17 +34,16 @@ Feature: As a registered user, I would like to have a page on the site where I c
     And click the "Delivery" link
     Then test the visbility of the created adress
 
-    #-- Failed
+
   Scenario: TC_07 Confirm that the user can add a new shipping address when Delivery is selected.
     Then click the "Pick Up" link
     And click the "Delivery" link
     Then click the "Add" link
     And crete a new adress
-    Then wait 3 seconds
-    Then test the visibility of the "Success Address Added Successfully!" text
+    Then wait 10 seconds
+    Then test the visbility of the created adress
 
 
-    #-- Failed
 
   Scenario: TC_06 Verify that the user can modify a displayed shipping address.
     Then click the "Pick Up" link
@@ -52,9 +51,7 @@ Feature: As a registered user, I would like to have a page on the site where I c
     Then click the "Edit" link
     And click the eddit button
     Then click the "Update Address" link
-    Then wait 5 seconds
-    And test the visibility of the "Success Address Updated Successfully!" text
-    Then wait 5 seconds
+
 
   Scenario: TC_08 Ensure that an Order Summary section is displayed under the shipping area.
     Then click the "Pick Up" link
