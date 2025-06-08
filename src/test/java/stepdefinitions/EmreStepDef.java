@@ -4,6 +4,7 @@ import Page.EmrePage;
 import Page.HilalPage;
 import Page.YusufPage;
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.android.AndroidDriver;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -15,6 +16,7 @@ import utilities.ReusableMethods;
 
 
 public class EmreStepDef {
+    AndroidDriver driver = (AndroidDriver) Driver.getAppiumDriver();
     EmrePage page = new EmrePage(Driver.getAppiumDriver());
     YusufPage yusufPage;
     HilalPage hilalPage;
@@ -82,6 +84,11 @@ public class EmreStepDef {
         page.getMenfilter().click();
     }
 
+    @Then("click request return")
+    public void clivkrequestbuton(){
+        page.Requestbuton.click();
+    }
+
     @When("User scrolls and taps on {string}")
     public void user_scrolls_and_taps_on(String text) {
         MobileUtils.scrollWithUiScrollableContentDescClick(text);
@@ -91,10 +98,39 @@ public class EmreStepDef {
     public void user_taps_the_first_delivered_order_icon() {
         ReusableMethods.clickFirstDeliveredOrderIconn();
     }
+    @Then("User taps the pending icon")
+    public void userpendingicon(){
+        ReusableMethods.clickFirstPendingOrderIcon();
+    }
 
     @Then("Text {string} should be visible and enabled on screen")
     public void text_should_be_visible_and_enabled_on_screen(String text) {
         ReusableMethods.isTextVisibleAndEnabled(text);
+    }
+
+    @When("User selects product for return")
+    public void user_selects_product_for_return() {
+        ReusableMethods.selectReturnProduct(driver);
+    }
+
+    @When("User opens return screen")
+    public void user_opens_return_screen() {
+        ReusableMethods.openReturnScreen(driver);
+    }
+
+    @When("User selects return reason")
+    public void user_selects_return_reason() {
+        ReusableMethods.selectReturnReason(driver);
+    }
+
+    @When("User enters return note {string}")
+    public void user_enters_return_note(String note) {
+        ReusableMethods.enterReturnNote(driver, note);
+    }
+
+    @Then("User taps Request Return button")
+    public void user_taps_request_return_button() {
+        ReusableMethods.tapRequestReturn(driver);
     }
 
 

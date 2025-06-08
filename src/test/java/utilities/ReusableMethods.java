@@ -578,9 +578,63 @@ public class ReusableMethods {
         throw new NoSuchElementException("Hiç Delivered sipariş bulunamadı!");
     }
 
+    public static void clickFirstPendingOrderIcon() {
+        AndroidDriver driver = (AndroidDriver) Driver.getAppiumDriver();
+
+        for (int i = 0; i < 20; i++) {
+            List<WebElement> deliveredIcons = driver.findElements(
+                    By.xpath("//android.widget.ImageView[contains(@content-desc, 'Pending')]")
+            );
+
+            if (!deliveredIcons.isEmpty()) {
+                deliveredIcons.get(0).click();
+                return;
+            }
+
+
+            ekranKaydirmaMethodu(695, 2515, 300, 743, 1467);
+            try { Thread.sleep(1000); } catch (InterruptedException e) {}
+        }
+        throw new NoSuchElementException("İade Bulunamadı!");
+    }
+
 
     public static boolean isTextVisibleAndEnabled(String text) {
         return false;
     }
+
+    public static void selectReturnProduct(AndroidDriver driver) {
+
+        driver.findElement(By.xpath("//android.view.View[@content-desc=\"Canvas Backpack for Men Zipper Rucksacks\nBrown\n1\nPrice: \n$56.00\nTotal: \n$54.00\"]/android.widget.ImageView[1]")).click();
+    }
+
+    public static void openReturnScreen(AndroidDriver driver) {
+
+        driver.findElement(By.xpath("//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.widget.ImageView[1]/android.view.View")).click();
+    }
+
+    public static void selectReturnReason(AndroidDriver driver) {
+
+        driver.findElement(By.xpath("//android.widget.Button[@content-desc=\"Damaged or defective item\"]")).click();
+    }
+
+    public static void enterReturnNote(AndroidDriver driver, String note) {
+
+        WebElement noteField = driver.findElement(By.xpath("//android.widget.EditText"));
+        noteField.click();
+        noteField.clear();
+        noteField.sendKeys(note);
+        try {
+            driver.hideKeyboard();
+        }catch (Exception e) {
+            System.out.println("Klavye zaten kapalı veya kapanamadı.");
+        }
+    }
+
+    public static void tapRequestReturn(AndroidDriver driver) {
+
+        driver.findElement(By.xpath("(//android.view.View[@content-desc=\"Request Return\"])[2]")).click();
+    }
+
 
 }
