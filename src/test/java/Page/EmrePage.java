@@ -55,6 +55,9 @@ public class EmrePage extends BasePage {
     @AndroidFindBy(xpath = "//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.ImageView")
     public WebElement Menfilter;
 
+    @AndroidFindBy(uiAutomator = "new UiSelector().description(\"Request Return\").instance(1)")
+    public WebElement Requestbuton;
+
 
 
 
